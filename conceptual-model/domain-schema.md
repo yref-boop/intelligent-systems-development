@@ -2,17 +2,37 @@
 ### domain schema
 ```mermaid
 classDiagram
+  class Requisitos {
+    PreferenciasPiloto : piloto
+    CaracteristicasCircuito : circuito
+    Meteorologia : meteorologia
+  }
+  class Meteorologia {
+    float : prob_lluvia
+    float : mm_agua
+    float : temperatura_ambiental
+    float : temperatura_asfalto
+    float : velocidad_viento
+    float : presion_atmosferica
+  }
   class PreferenciasPiloto {
-  str : tipo_conduccion
+    str : tipo_conduccion
   }
+
   class CaracteristicasCircuito {
-  float : porcentaje_curvas
-  float : longitud
-  float : variacion_pendiente
+    float : numero_curvas_lentas
+    float : numero_curvas_rapidas
+    float : longitud
+    float : variacion_pendiente
   }
+  
+  Meteorologia ..> Requisitos
+  PreferenciasPiloto ..> Requisitos
+  CaracteristicasCircuito ..> Requisitos
+  
   class Coche {
-  str : aleron
-  str : ruedas
-  str : motor
+    str : aleron
+    str : ruedas
+    str : motor
   }
 ```
