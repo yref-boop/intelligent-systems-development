@@ -30,9 +30,26 @@ classDiagram
   PreferenciasPiloto ..> Requisitos
   CaracteristicasCircuito ..> Requisitos
   
-  class Coche {
-    str : aleron
-    str : ruedas
-    str : motor
+  class Unidad_Potencia {
+    str : ICE
+    str : MGU-H
+    str : MGU-K
+    str : turbo
+    str : ES
+    str : CE
+    str : exhaust
   }
+  
+  class Coche {
+    str : aleron_delantero
+    str : aleron_trasero
+    str : tipo_ruedas
+    str : angulo_ruedas
+    str : altura
+    str : caja_cambios
+    float : presion_frenos
+    Unidad_Potencia : unidad_potencia
+  }
+  
+  Unidad_Potencia ..> Coche
 ```
