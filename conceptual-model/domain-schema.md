@@ -7,25 +7,26 @@ classDiagram
     CaracteristicasCircuito : circuito
     Meteorologia : meteorologia
   }
+  
   class Meteorologia {
-    float : prob_lluvia
-    float : mm_agua
-    float : temperatura_ambiental
-    float : temperatura_asfalto
-    float : velocidad_viento
-    float : presion_atmosferica
+    float : probLluvia
+    float : mmAgua
+    float : temperaturaAmbiental
+    float : temperaturaAsfalto
+    float : velocidadViento
+    float : presionAtmosferica
   }
+  
   class PreferenciasPiloto {
     actitud : {agresivo, pasivo, neutral}
-    comportamiento_coche : {oversteer, understeer}
-    habilidades : {curvas, adelantar, lluvia}
+    comportamientoCoche : {oversteer, understeer}
   }
 
   class CaracteristicasCircuito {
-    float : numero_curvas_lentas
-    float : numero_curvas_rapidas
+    float : numeroCurvasLentas
+    float : numeroCurvasRapidas
     float : longitud
-    float : variacion_pendiente
+    float : variacionPendiente
   }
   
   Meteorologia ..> Requisitos
@@ -34,51 +35,58 @@ classDiagram
   
   class ICE{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class MGU-H{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class MGU-K{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
-  class turbo{
+  
+  class Turbo{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class ES{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class CE{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class Exhaust{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado: Int
+    vecesCambiado: Int
   }
+  
   class CajaCambios{
     modelo : String
-    vida_util : Int
+    vidaUtil : Int
     antiguedad : Int
-    veces_cambiado : Int
+    vecesCambiado : Int
   }
   
   class Unidad_Potencia {
@@ -91,17 +99,29 @@ classDiagram
     Exhaust : exhaust
   }
   
+  ICE ..> UnidadPotencia
+  MGU-H ..> UnidadPotencia
+  MGU-K ..> UnidadPotencia
+  Turbo ..> UnidadPotencia
+  ES ..> UnidadPotencia
+  CE ..> UnidadPotencia
+  Exhaust ..> UnidadPotencia
+  
+  class Ruedas {
+    compuesto : {blando, medio, duro, intermedio, mojado}
+    float : camber
+    float : pressure
+  }
+  
   class Coche {
-    aleron_delantero : {alta, baja}
-    aleron_trasero : {alta, baja}
-    compuesto_ruedas : {blando, medio, duro, intermedio, mojado}
-    float : angulo_ruedas : {85,95}
-    float : altura : {15mm, 9.50mm}
-    CajaCambios : caja_cambios
-    float : presion_frenos
-    float : peso
-    Unidad_Potencia : unidad_potencia
+    aleronDelantero : {alta, baja}
+    aleronTrasero : {alta, baja}
+    float : altura
+    CajaCambios : cajaCambios
+    UnidadPotencia : unidadPotencia
    }
   
-  Unidad_Potencia ..> Coche
+  UnidadPotencia ..> Coche
+  CajaCambios ..> Coche
+  Ruedas ..> Coche
 ```
