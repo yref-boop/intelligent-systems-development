@@ -29,60 +29,56 @@ classDiagram
     float : variacionPendiente
   }
   
-  Meteorologia ..> Requisitos
-  PreferenciasPiloto ..> Requisitos
-  CaracteristicasCircuito ..> Requisitos
-  
-  class ICE{
+  class ICE {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class MGU-H{
+  class MGU-H {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class MGU-K{
+  class MGU-K {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class Turbo{
+  class Turbo {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class ES{
+  class ES {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class CE{
+  class CE {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class Exhaust{
+  class Exhaust {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
     vecesCambiado: Int
   }
   
-  class CajaCambios{
+  class CajaCambios {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
@@ -98,14 +94,6 @@ classDiagram
     CE : CE
     Exhaust : exhaust
   }
-  
-  ICE ..> UnidadPotencia
-  MGU-H ..> UnidadPotencia
-  MGU-K ..> UnidadPotencia
-  Turbo ..> UnidadPotencia
-  ES ..> UnidadPotencia
-  CE ..> UnidadPotencia
-  Exhaust ..> UnidadPotencia
   
   class Ruedas {
     compuesto : enum
@@ -124,4 +112,16 @@ classDiagram
   UnidadPotencia ..> Coche
   CajaCambios ..> Coche
   Ruedas ..> Coche
+    
+  ICE ..> UnidadPotencia
+  MGU-H ..> UnidadPotencia
+  MGU-K ..> UnidadPotencia
+  Turbo ..> UnidadPotencia
+  ES ..> UnidadPotencia
+  CE ..> UnidadPotencia
+  Exhaust ..> UnidadPotencia
+    
+  Meteorologia ..> Requisitos
+  PreferenciasPiloto ..> Requisitos
+  CaracteristicasCircuito ..> Requisitos
 ```
