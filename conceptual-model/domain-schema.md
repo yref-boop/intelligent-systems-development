@@ -18,8 +18,8 @@ classDiagram
   }
   
   class PreferenciasPiloto {
-    actitud : {agresivo, pasivo, neutral}
-    comportamientoCoche : {oversteer, understeer}
+    actitud : enum
+    comportamientoCoche : enum
   }
 
   class CaracteristicasCircuito {
@@ -108,14 +108,14 @@ classDiagram
   Exhaust ..> UnidadPotencia
   
   class Ruedas {
-    compuesto : {blando, medio, duro, intermedio, mojado}
+    compuesto : enum
     float : camber
     float : pressure
   }
   
   class Coche {
-    aleronDelantero : {alta, baja}
-    aleronTrasero : {alta, baja}
+    aleronDelantero : enum
+    aleronTrasero : enum
     float : altura
     CajaCambios : cajaCambios
     UnidadPotencia : unidadPotencia
