@@ -32,14 +32,63 @@ classDiagram
   PreferenciasPiloto ..> Requisitos
   CaracteristicasCircuito ..> Requisitos
   
+  class ICE{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class MGU-H{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class MGU-K{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class turbo{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class ES{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class CE{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class Exhaust{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado: Int
+  }
+  class CajaCambios{
+    modelo : String
+    vida_util : Int
+    antiguedad : Int
+    veces_cambiado : Int
+  }
+  
   class Unidad_Potencia {
-    str : ICE
-    str : MGU-H
-    str : MGU-K
-    str : turbo
-    str : ES
-    str : CE
-    str : exhaust
+    ICE : ICE
+    MGU-H : MGU-H
+    MGU-K : MGU-K
+    Turbo : turbo
+    ES : ES
+    CE : CE
+    Exhaust : exhaust
   }
   
   class Coche {
@@ -48,12 +97,11 @@ classDiagram
     compuesto_ruedas : {blando, medio, duro, intermedio, mojado}
     float : angulo_ruedas : {85,95}
     float : altura : {15mm, 9.50mm}
-    int : caja_cambios 
+    CajaCambios : caja_cambios
     float : presion_frenos
     float : peso
     Unidad_Potencia : unidad_potencia
-    gastados : {ICE, MGH-H, MGU-K, turbo, ES, CE, exhaust, caja de cambios}
-  }
+   }
   
   Unidad_Potencia ..> Coche
 ```
