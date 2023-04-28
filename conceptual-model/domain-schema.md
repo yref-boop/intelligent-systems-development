@@ -16,7 +16,9 @@ classDiagram
     float : presion_atmosferica
   }
   class PreferenciasPiloto {
-    str : tipo_conduccion
+    actitud : {agresivo, pasivo, neutral}
+    comportamiento_coche : {oversteer, understeer}
+    habilidades : {curvas, adelantar, lluvia}
   }
 
   class CaracteristicasCircuito {
@@ -41,14 +43,16 @@ classDiagram
   }
   
   class Coche {
-    str : aleron_delantero
-    str : aleron_trasero
-    str : tipo_ruedas
-    str : angulo_ruedas
-    str : altura
-    str : caja_cambios
+    aleron_delantero : {alta, baja}
+    aleron_trasero : {alta, baja}
+    compuesto_ruedas : {blando, medio, duro, intermedio, mojado}
+    float : angulo_ruedas : {85,95}
+    float : altura : {15mm, 9.50mm}
+    int : caja_cambios 
     float : presion_frenos
+    float : peso
     Unidad_Potencia : unidad_potencia
+    gastados : {ICE, MGH-H, MGU-K, turbo, ES, CE, exhaust, caja de cambios}
   }
   
   Unidad_Potencia ..> Coche
