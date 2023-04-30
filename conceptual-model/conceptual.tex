@@ -71,7 +71,32 @@
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
 \let\PBS=\PreserveBackslash
 
+\newcommand {\inference}[5] {
+    \begin {tikzpicture}
+         \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (0,0) (input) {#1};
+        \node [draw,
+            rounded corners = 0.5cm,
+            minimum width=2cm,
+            minimum height=1cm] at (3,0) (inference) {#2};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (6,0) (output) {#3};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (0,-2) (input_type) {#4};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (6,-2) (output_type) {#5};
 
+        \draw [-latex] (input) to (inference);
+        \draw [-latex] (inference) to (output);
+        \draw [dotted] (-1,-1) to (7,-1);
+        \draw [-latex] (input) edge (input_type);
+        \draw [-latex] (output) edge (output_type);
+    \end {tikzpicture}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -363,363 +388,42 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \\[1cm]
 \textbf {Propose}
 \\[0.5cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (skeletal) {skeletal design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (propose) {propose};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (extension) {extension};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (skeletal) to (propose);
-    \draw [-latex] (propose) to (extension);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (skeletal) edge (designa);
-    \draw [-latex] (extension) edge (designe);
-\end {tikzpicture}
+\inference {skeletal design}{propose}{extension}{In}{Out}
 \hspace {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (design) {design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (propose) {propose};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (extension) {extension};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (design) to (propose);
-    \draw [-latex] (propose) to (extension);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (design) edge (designa);
-    \draw [-latex] (extension) edge (designe);
-\end {tikzpicture}
+\inference {design}{propose}{extension}{In}{Out}
 \\[1cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (soft) {soft requirements};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (propose) {propose};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (extension) {extension};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (soft) to (propose);
-    \draw [-latex] (propose) to (extension);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (soft) edge (designa);
-    \draw [-latex] (extension) edge (designe);
-\end {tikzpicture}
+\inference {soft requirements}{propose}{extension}{In}{Out}
 \\[1cm]
 \textbf {Verify}
 \\[0.5cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (design) {design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (truth) {truth value};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (design) to (verify);
-    \draw [-latex] (verify) to (truth);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (design) edge (designa);
-    \draw [-latex] (truth) edge (designe);
-\end {tikzpicture}
+\inference {design}{verify}{truth value}{In}{Out}
 \hspace {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (design) {design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (violation) {violation};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (design) to (verify);
-    \draw [-latex] (verify) to (violation);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (design) edge (designa);
-    \draw [-latex] (violation) edge (designe);
-\end {tikzpicture}
+\inference {design}{verify}{violation}{In}{Out}
 \\[1cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (hard) {hard requirements};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (truth) {truth value};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (hard) to (verify);
-    \draw [-latex] (verify) to (truth);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (hard) edge (designa);
-    \draw [-latex] (truth) edge (designe);
-\end {tikzpicture}
+\inference {hard requirements}{verify}{truth value}{In}{Out}
 \hspace {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (hard) {hard requirements};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (violation) {violation};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (hard) to (verify);
-    \draw [-latex] (verify) to (violation);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (hard) edge (designa);
-    \draw [-latex] (violation) edge (designe);
-\end {tikzpicture}
+\inference {hard requirements}{verify}{violation}{In}{Out}
 \\[1cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (extension) {extension};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (truth) {truth value};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (extension) to (verify);
-    \draw [-latex] (verify) to (truth);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (extension) edge (designa);
-    \draw [-latex] (truth) edge (designe);
-\end {tikzpicture}
+\inference {extension}{verify}{truth value}{In}{Out}
 \hspace {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (extension) {extension};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (verify) {verify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (violation) {violation};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (extension) to (verify);
-    \draw [-latex] (verify) to (violation);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (extension) edge (designa);
-    \draw [-latex] (violation) edge (designe);
-\end {tikzpicture}
+\inference {extension}{verify}{violation}{In}{Out}
 \\[1cm]
 \textbf {Critique}
 \\[0.5cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (violation) {violation};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (critique) {critique};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (list) {action list};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (violation) to (critique);
-    \draw [-latex] (critique) to (list);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (violation) edge (designa);
-    \draw [-latex] (list) edge (designe);
-\end {tikzpicture}
+\inference {violation}{critique}{action list}{In}{Out}
 \hspace {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (design) {design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (critique) {critique};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (list) {action list};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (design) to (critique);
-    \draw [-latex] (critique) to (list);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (design) edge (designa);
-    \draw [-latex] (list) edge (designe);
-\end {tikzpicture}
+\inference {design}{critique}{action list}{In}{Out}
 \\[1cm]
 \textbf {Select}
 \\[0.5cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (list) {action list};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (select) {select};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (action) {action};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (list) to (select);
-    \draw [-latex] (select) to (action);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (list) edge (designa);
-    \draw [-latex] (action) edge (designe);
-\end {tikzpicture}
+\inference {action list}{select}{action}{In}{Out}
 \\[1cm]
 \textbf {Modify}
 \\[0.5cm]
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (action) {action};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (modify) {modify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (design) {design};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
+\inference {action}{modify}{design}{In}{Out}
+\hspace {1cm}
+\inference {design}{modify}{design}{In}{Out}
 
-    \draw [-latex] (action) to (modify);
-    \draw [-latex] (modify) to (design);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (action) edge (designa);
-    \draw [-latex] (design) edge (designe);
-\end {tikzpicture}
-\hspace* {1cm}
-\begin {tikzpicture}
-     \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,0) (design1) {design};
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (modify) {modify};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,0) (design2) {design};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-2) (designa) {designa};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (6,-2) (designe) {designe};
-
-    \draw [-latex] (design1) to (modify);
-    \draw [-latex] (modify) to (design2);
-    \draw [dotted] (-1,-1) to (7,-1);
-    \draw [-latex] (design1) edge (designa);
-    \draw [-latex] (design2) edge (designe);
-\end {tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Tarea}
