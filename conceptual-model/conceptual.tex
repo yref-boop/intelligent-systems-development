@@ -7,9 +7,13 @@
 \usepackage{sectsty}
 \usepackage{float}
 
-%color del texto
+% color del texto
 \usepackage {xcolor}
 
+% diagramas
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning}
+\tikzset {font=\scriptsize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -212,12 +216,99 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
 \subsubsection{Metodología empleada}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textcolor {red} {Justificación de la selección de la metodología \emph{Middle-in} o \emph{Middle-ou} a aplicar.}
+La metodología escogida para este proyecto es \textit{Middle-out} ya que la plantilla escogida funciona como aproximación correcta de la estructura de inferencias de manera bastante directa.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Plantilla anotada}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textcolor {red} {Gráfico con la plantilla notada. Todas las modificaciones propuestas sobre la plantilla original deberán justificarse en este punto.}
+La plantilla seleccionada es la de \textit{configuration design}, modificada ligeramente para adaptarse mejor a la naturaleza de nuestro problema:
+
+\begin {tikzpicture}
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,0) (skeletal design) {skeletal design};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-2) (soft) {soft requirements};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] (propose) at (3,-2) {propose};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-2) (extension) {extension};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (9,-4) (hard) {hard requirements};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-6) (design) {design};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-6) (verify) {verify};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-8) (modify) {modify};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-10) (action) {action};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-10) (critique) {critique};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-10) (violation) {violation};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (9,-10) (truth) {truth value};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-12) (select) {select};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-12) (list) {action list};
+    \draw [-latex] (skeletal design) to (propose);
+    \draw [-latex] (soft) to (propose);
+    \draw [-latex] (propose) to (extension);
+    \draw [-latex] (extension) to (verify);
+    \draw [tips = on proper draw] (hard) to (6,-4);
+    \draw [-latex] (verify) to (violation);
+    \draw (modify) -- (0,-6);
+    \draw [-latex] (0,-6) to (design);
+    \draw [-latex] (design) to (critique);
+    \draw [-latex] (3,-8) to (modify);
+    \draw (6,-8) -- (9,-8);
+    \draw [-latex] (9,-8) to (truth);
+    \draw [-latex] (violation) to (critique);
+    \draw [-latex] (critique) to (list);
+    \draw [-latex] (list) to (select);
+    \draw [-latex] (select) to (action);
+    \draw [-latex] (action) to (modify);
+    \draw [-latex] (design) to (propose);
+    \draw [-latex] (design) to (verify);
+\end {tikzpicture}
+
+\subsubsection {Anotaciones}
+\begin {description}
+    \item [Cambios:] Debido a la naturaleza de los datos de entrada, consideramos innecesarias las inferencias \textit {specify} y \textit {operationalize}. Nuestros datos ya vienen formateados y separados de manera que se puedan introducir directamente en el sistema como \textit {soft} y \textit {hard requirements}, pasando estos dos a ser los inputs de nuestro sistema.
+    \item [Soft requirements:] Requisitos a usar como preferencias. En nuestro caso, las preferencias de conducción del piloto.
+    \item [Hard requirements:] Requisitos obligatorios. Ej: Necesario que el coche sea capaz de adaptarse a altas temperaturas si las temperaturas previstas son altas.
+    \item [Skeletal design:] Colección de componentes que debe contener la solución: En nuestro caso, 4 ruedas, un motor, alerón,...
+    \item [Extension:] Crear una extensión de diseño, basándonos en las preferencias de la base de conocimiento. Ej: Neumáticos duros.
+    \item [Truth value:] Resultado booleano de verificar si el diseño propuesto es consistente o no. Ej: El coche una mayor cantidad de combustible al marcado en el reglamento por lo que devuelve false.
+    \item [Violation:] Restricción incumplida por el diseño actual. Ej: Reglamento incumplido - Capacidad de combustible sobrepasada
+    \item [Action list:] Lista ordenada de posibles acciones para arreglar problemas del diseño actual. Ej: Para "Reglamento incumplido - Capacidad de combustible sobrepasada", elegimos otro depósito con menor capacidad; para "Reglamento incumplido - Potencia del motor sobrepasada", elegimos otro con menor potencia.
+    \item [Action:] Una simple acción para arreglar problemas del diseño actual. Ej: Para "Reglamento incumplido - Capacidad de combustible sobrepasada", elegimos otro depósito con menor capacidad.
+    \item [Design:] Nuevo diseño propuesto tras aplicar el fix al diseño anterior. Ej: Otro coche con características similares con un depósito de combustible reglamentario.
+\end {description}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema inicial del dominio}
