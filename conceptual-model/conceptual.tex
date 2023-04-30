@@ -21,6 +21,9 @@
 \renewcommand{\umldrawcolor}{black}
 \renewcommand{\umlfillcolor}{white}
 
+% arrows
+\usetikzlibrary{arrows.meta}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%
 %%%%%%%%%%%%% Margenes
@@ -42,8 +45,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%
-%%%%%%%%%%%%% Profundidad de enumeracion y tabla de contenidos
+%%%%%%%%%%%%% %%%%%%%%%%%%% Profundidad de enumeracion y tabla de contenidos
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -388,41 +390,41 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \\[1cm]
 \textbf {Propose}
 \\[0.5cm]
-\inference {skeletal design}{propose}{extension}{In}{Out}
+\inference {skeletal design}{propose}{extension}{design}{design element}
 \hspace {1cm}
-\inference {design}{propose}{extension}{In}{Out}
+\inference {design}{propose}{extension}{design}{design element}
 \\[1cm]
-\inference {soft requirements}{propose}{extension}{In}{Out}
+\inference {soft requirements}{propose}{extension}{preferences}{design element}
 \\[1cm]
 \textbf {Verify}
 \\[0.5cm]
-\inference {design}{verify}{truth value}{In}{Out}
+\inference {design}{verify}{truth value}{design}{boolean}
 \hspace {1cm}
-\inference {design}{verify}{violation}{In}{Out}
+\inference {design}{verify}{violation}{design}{constraint}
 \\[1cm]
-\inference {hard requirements}{verify}{truth value}{In}{Out}
+\inference {hard requirements}{verify}{truth value}{properties}{boolean}
 \hspace {1cm}
-\inference {hard requirements}{verify}{violation}{In}{Out}
+\inference {hard requirements}{verify}{violation}{properties}{constraint}
 \\[1cm]
-\inference {extension}{verify}{truth value}{In}{Out}
+\inference {extension}{verify}{truth value}{design element}{boolean}
 \hspace {1cm}
-\inference {extension}{verify}{violation}{In}{Out}
+\inference {extension}{verify}{violation}{design element}{constraint}
 \\[1cm]
 \textbf {Critique}
 \\[0.5cm]
-\inference {violation}{critique}{action list}{In}{Out}
+\inference {violation}{critique}{action list}{constraint}{fixes}
 \hspace {1cm}
-\inference {design}{critique}{action list}{In}{Out}
+\inference {design}{critique}{action list}{design}{fixes}
 \\[1cm]
 \textbf {Select}
 \\[0.5cm]
-\inference {action list}{select}{action}{In}{Out}
+\inference {action list}{select}{action}{fixes}{fixAction}
 \\[1cm]
 \textbf {Modify}
 \\[0.5cm]
-\inference {action}{modify}{design}{In}{Out}
+\inference {action}{modify}{design}{fixAction}{design}
 \hspace {1cm}
-\inference {design}{modify}{design}{In}{Out}
+\inference {design}{modify}{design}{fixAction}{design}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -433,8 +435,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fase De Refinamiento}
