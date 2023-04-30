@@ -15,6 +15,12 @@
 \usetikzlibrary{shapes, arrows.meta, positioning}
 \tikzset {font=\scriptsize}
 
+% uml
+\usepackage{pgf-umlcd}
+\renewcommand{\umltextcolor}{black}
+\renewcommand{\umldrawcolor}{black}
+\renewcommand{\umlfillcolor}{white}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%
 %%%%%%%%%%%%% Margenes
@@ -151,6 +157,13 @@ prácticas: xxx}{Modelado Conceptual en CommonKADS.}
 
 \textcolor {red} {Se deberá entregar la documentación correspondiente a las tres fases de diseño del modelo (explicadas en el capítulo 7 del libro de Shreiber).}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fase de Identificación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textcolor {red} {Indicación de la/s tarea/s del formulario OM-3 a las que se referirá el modelo de conocimiento.}
+
 La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, correspondiente a \textbf{Generación de la configuración optima del monoplaza}.
 \begin{table}[H]
     \scriptsize
@@ -175,12 +188,6 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
 
     \end{tabularx}
 \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Fase de Identificación}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textcolor {red} {Indicación de la/s tarea/s del formulario OM-3 a las que se referirá el modelo de conocimiento.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Glosario}
@@ -314,6 +321,39 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \subsubsection{Esquema inicial del dominio}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textcolor {red} {Boceto del que se parte que, posteriormente, se irá refinando al realizar el mapeo de las inferencias, etc.}
+
+\begin{tikzpicture}
+    \begin{class}[text width=4cm]{Requisitos}{0,0}
+        \attribute{PreferenciasPiloto : piloto}
+        \attribute{Circuito : circuito}
+        \attribute{Meteorologia : meteorologia}
+    \end{class}
+    \begin{class}[yshift=-15mm, text width = 3.5cm]{Meteorologia}{Requisitos.south}
+        \attribute{Float: mmAgua}
+        \attribute{Float: temperatura}
+        \attribute{Float: velocidadViento}
+        \attribute{Float: presionAtmosferica}
+        \inherit {Requisitos}
+    \end{class}
+    \begin{class}[xshift=-32mm, text width = 4cm]{PreferenciasPiloto}{Meteorologia.north west}
+        \attribute {String : tipoConduccion}
+        \inherit {Requisitos}
+    \end{class}
+    \begin{class}[xshift=+32mm, text width = 3cm]{Circuito}{Meteorologia.north east}
+        \attribute{Float: pendiente}
+        \attribute{Float: curvas}
+        \attribute{Float: longitud}
+        \inherit {Requisitos}
+    \end{class}
+\end{tikzpicture}
+\\ [10px]
+\begin {tikzpicture}
+    \begin {class} [text width = 3cm] {Coche} {0,0}
+        \attribute {String : tipoRuedas}
+        \attribute {String : motor}
+        \attribute {String : aleron}
+    \end {class}
+\end {tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Estructura inferencial y Mapeo}
