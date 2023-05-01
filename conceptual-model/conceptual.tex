@@ -320,9 +320,26 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         minimum width=2cm,
         minimum height=1cm] at (3,-12) (list) {action list};
 
+    \draw [line width=0mm, black] (7.75,-5.5) -- (10.25,-5.5);
     \node [align=center,
         minimum width=2cm,
-        minimum height=1cm] at (9,-6) (verificacion) {conocimiento de\\verificación};
+        minimum height=1cm] at (9,-6) (k_verify) {conocimiento de\\verificación};
+    \draw [line width=0mm, black] (7.75,-6.5) -- (10.25,-6.5);
+    \draw [-latex] (7.75,-6) to (verify);
+
+    \draw [line width=0mm, black] (4.75,-11.5) -- (7.25,-11.5);
+    \node [align=center,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-12) (k_critique) {conocimiento de\\crítica};
+    \draw [line width=0mm, black] (4.75,-12.5) -- (7.25,-12.5);
+    \draw [-latex] (k_critique) to (critique);
+
+    \draw [line width=0mm, black] (-1.25,-3.5) -- (1.25,-3.5);
+    \node [align=center,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-4) (k_propose) {conocimiento de\\propuesta};
+    \draw [-latex] (k_propose) to (propose);
+    \draw [line width=0mm, black] (-1.25,-4.5) -- (1.25,-4.5);
 
     \draw [-latex] (skeletal design) to (propose);
     \draw [-latex] (soft) to (propose);
@@ -472,18 +489,17 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \end{itemize}
 \end{description}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Tarea}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \textbf {Especificación de la tarea}
 \begin{lstlisting}
     TASK : configuration-design;
     INPUT :
       soft requirements : "preferencias de conducci|ó|n del piloto";
       hard requirements : "datos sobre el circuito y meteorolog|í|a";
-    OUTPUT :
-      dise|ñ|o : "propuesta de dise|ñ|o de un monoplaza";
+    OUTPUT : dise|ñ|o : "propuesta de dise|ñ|o de un monoplaza";
     END TASK;
 \end{lstlisting}
 
