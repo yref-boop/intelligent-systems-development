@@ -114,7 +114,44 @@
         \draw [->,dashed] (output) edge (output_type);
     \end {tikzpicture}
 }
+\newcommand {\logicinference}[7] {
+    \begin {tikzpicture}
+         \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (0,0) (input) {#1};
+        \node [draw,
+            rounded corners = 0.5cm,
+            minimum width=2cm,
+            minimum height=1cm] at (3,0) (inference) {#2};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (6,0) (output) {#3};
 
+        \draw [line width=0mm, black] (1.75,-1) -- (4.25,-1);
+        \node [align=center,
+            minimum width=2cm,
+            minimum height=1cm] at (3,-1.5) (knowledge) {#6};
+        \draw [line width=0mm, black] (1.75,-2) -- (4.25,-2);
+
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (0,-3.5) (input_type) {#4};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (6,-3.5) (output_type) {#5};
+        \node [draw,
+            minimum width=2cm,
+            minimum height=1cm] at (3,-3.5) (rule) {#7};
+
+        \draw [-latex] (input) to (inference);
+        \draw [-latex] (inference) to (output);
+        \draw [dotted] (-1,-2.5) to (7,-2.5);
+        \draw [->,dashed] (input) edge (input_type);
+        \draw [->,dashed] (output) edge (output_type);
+        \draw [-latex] (knowledge) to (inference);
+        \draw [->, dashed] (rule) to (knowledge);
+    \end {tikzpicture}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -417,31 +454,31 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 
 \textbf {Propose}
 \\[0.5cm]
-\inference {skeletal design}{propose}{extension}{design}{design element}
+\logicinference {skeletal design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
 \hspace {1cm}
-\inference {design}{propose}{extension}{design}{design element}
+\logicinference {design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
 \\[1cm]
-\inference {soft requirements}{propose}{extension}{preferences}{design element}
+\logicinference {soft requirements}{propose}{extension}{preferences}{design element}{conocimiento de\\propuesta}{calculation-expression}
 \\[1cm]
 \textbf {Verify}
 \\[0.5cm]
-\inference {design}{verify}{truth value}{design}{boolean}
+\logicinference {design}{verify}{truth value}{design}{boolean}{conocimiento de\\verificación}{constraint-expression}
 \hspace {1cm}
-\inference {design}{verify}{violation}{design}{constraint}
+\logicinference {design}{verify}{violation}{design}{constraint}{conocimiento de\\verificación}{constraint-expression}
 \\[1cm]
-\inference {hard requirements}{verify}{truth value}{properties}{boolean}
+\logicinference {hard requirements}{verify}{truth value}{properties}{boolean}{conocimiento de\\verificación}{constraint-expression}
 \hspace {1cm}
-\inference {hard requirements}{verify}{violation}{properties}{constraint}
+\logicinference {hard requirements}{verify}{violation}{properties}{constraint}{conocimiento de\\verificación}{constraint-expression}
 \\[1cm]
-\inference {extension}{verify}{truth value}{design element}{boolean}
+\logicinference {extension}{verify}{truth value}{design element}{boolean}{conocimiento de\\verificación}{constraint-expression}
 \hspace {1cm}
-\inference {extension}{verify}{violation}{design element}{constraint}
+\logicinference {extension}{verify}{violation}{design element}{constraint}{conocimiento de\\verificación}{constraint-expression}
 \\[1cm]
 \textbf {Critique}
 \\[0.5cm]
-\inference {violation}{critique}{action list}{constraint}{fixes}
+\logicinference {violation}{critique}{action list}{constraint}{fixes}{conocimiento de\\crítica}{preference-expression}
 \hspace {1cm}
-\inference {design}{critique}{action list}{design}{fixes}
+\logicinference {design}{critique}{action list}{design}{fixes}{conocimiento de\\crítica}{preference-expression}
 \\[1cm]
 \textbf {Select}
 \\[0.5cm]
