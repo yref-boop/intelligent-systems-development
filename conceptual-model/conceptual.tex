@@ -110,8 +110,8 @@
         \draw [-latex] (input) to (inference);
         \draw [-latex] (inference) to (output);
         \draw [dotted] (-1,-1) to (7,-1);
-        \draw [-latex] (input) edge (input_type);
-        \draw [-latex] (output) edge (output_type);
+        \draw [->,dashed] (input) edge (input_type);
+        \draw [->,dashed] (output) edge (output_type);
     \end {tikzpicture}
 }
 
@@ -180,8 +180,7 @@ Universidade da Coruña \\ Curso
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %numeros arábigos
-\pagenumbering{arabic} \pagestyle{myheadings} \markboth{Grupo de
-prácticas: xxx}{Modelado Conceptual en CommonKADS.}
+\pagenumbering{arabic} \pagestyle{myheadings} \markboth{Grupo de prácticas: 3.1}{Modelado Conceptual en CommonKADS.}
 
 %indentaciones y espaciado entre párrafos
 \setlength{\parindent}{1,5cm} \setlength{\parskip}{0,7cm}
@@ -370,7 +369,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute{Circuito : circuito}
         \attribute{Meteorologia : meteorologia}
     \end{class}
-    \begin{class}[rectangle split parts=2, yshift=-15mm, text width = 3.5cm]{Meteorologia}{Requisitos.south}
+    \begin{class}[rectangle split parts=2, yshift=-5mm, text width = 3.5cm]{Meteorologia}{Requisitos.south}
         \attribute{Float: mmAgua}
         \attribute{Float: temperatura}
         \attribute{Float: velocidadViento}
@@ -387,15 +386,12 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute{Float: longitud}
         \inherit {Requisitos}
     \end{class}
-\end{tikzpicture}
-\\ [10px]
-\begin {tikzpicture}
-    \begin {class} [rectangle split parts=2, text width = 3cm] {Coche} {0,0}
+    \begin {class} [rectangle split parts=2, yshift=-10mm, text width = 3cm] {Coche} {PreferenciasPiloto.south}
         \attribute {String : tipoRuedas}
         \attribute {String : motor}
         \attribute {String : aleron}
     \end {class}
-\end {tikzpicture}
+\end{tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Estructura inferencial y Mapeo}
@@ -451,10 +447,10 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \begin{lstlisting}
     TASK : configuration-design;
     INPUT :
-      soft requirements : "Preferencias de conducci|ó|n del piloto";
-      hard requirements : "Datos sobre el circuito y meteorolog|í|a";
+      soft requirements : "preferencias de conducci|ó|n del piloto";
+      hard requirements : "datos sobre el circuito y meteorolog|í|a";
     OUTPUT :
-      dise|ñ|o : "Propuesta de dise|ñ|o de un monoplaza";
+      dise|ñ|o : "propuesta de dise|ñ|o de un monoplaza";
     END TASK;
 \end{lstlisting}
 
@@ -466,10 +462,10 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         INFERENCES: propose, verify, critique, select, modify;
       ROLES:
         INTERMEDIATE:
-          skeletal-design: "Conjunto de elementos de dise|ñ|o";
-          extension: "Un valor nuevo para un |ú|nico design element";
-          violation: "Constraint incumplido por el design actual";
-          truth-value: "Boolean valor de la verificaci|ó|n";
+          skeletal-design: "conjunto de elementos de dise|ñ|o";
+          extension: "un valor nuevo para un |ú|nico design element";
+          violation: "constraint incumplido por el design actual";
+          truth-value: "boolean valor de la verificaci|ó|n";
           action-list: "lista de posibles fixAction";
           action: "una |ú|nica acci|ó|n de reparaci|ó|n;
       CONTROL-STRUCTURE;
@@ -492,6 +488,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
           END WHILE
     END TASK-METHOD propose-and-revise;
 \end{lstlisting}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
