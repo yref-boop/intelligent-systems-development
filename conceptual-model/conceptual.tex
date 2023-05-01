@@ -24,6 +24,21 @@
 % arrows
 \usetikzlibrary{arrows.meta}
 
+% code
+\usepackage{listings}
+\lstset{escapeinside=||}
+\lstset{
+    numbers=left,
+    numberstyle=\small,
+    numbersep=8pt,
+    frame = single,
+    language=Pascal,
+    framexleftmargin=20pt,
+    framexrightmargin=20pt
+}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%
 %%%%%%%%%%%%% Margenes
@@ -350,23 +365,23 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \textcolor {red} {Boceto del que se parte que, posteriormente, se irá refinando al realizar el mapeo de las inferencias, etc.}
 
 \begin{tikzpicture}
-    \begin{class}[text width=4cm]{Requisitos}{0,0}
+    \begin{class}[rectangle split parts=2, text width=4cm]{Requisitos}{0,0}
         \attribute{PreferenciasPiloto : piloto}
         \attribute{Circuito : circuito}
         \attribute{Meteorologia : meteorologia}
     \end{class}
-    \begin{class}[yshift=-15mm, text width = 3.5cm]{Meteorologia}{Requisitos.south}
+    \begin{class}[rectangle split parts=2, yshift=-15mm, text width = 3.5cm]{Meteorologia}{Requisitos.south}
         \attribute{Float: mmAgua}
         \attribute{Float: temperatura}
         \attribute{Float: velocidadViento}
         \attribute{Float: presionAtmosferica}
         \inherit {Requisitos}
     \end{class}
-    \begin{class}[xshift=-32mm, text width = 4cm]{PreferenciasPiloto}{Meteorologia.north west}
+    \begin{class}[rectangle split parts=2, xshift=-32mm, text width = 4cm]{PreferenciasPiloto}{Meteorologia.north west}
         \attribute {String : tipoConduccion}
         \inherit {Requisitos}
     \end{class}
-    \begin{class}[xshift=+32mm, text width = 3cm]{Circuito}{Meteorologia.north east}
+    \begin{class}[rectangle split parts=2, xshift=+32mm, text width = 3cm]{Circuito}{Meteorologia.north east}
         \attribute{Float: pendiente}
         \attribute{Float: curvas}
         \attribute{Float: longitud}
@@ -375,7 +390,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \end{tikzpicture}
 \\ [10px]
 \begin {tikzpicture}
-    \begin {class} [text width = 3cm] {Coche} {0,0}
+    \begin {class} [rectangle split parts=2, text width = 3cm] {Coche} {0,0}
         \attribute {String : tipoRuedas}
         \attribute {String : motor}
         \attribute {String : aleron}
@@ -432,6 +447,51 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textcolor {red} {Especificación de la tarea (entradas y salidas) y Método de la tarea}
 
+\textbf {Especificación de la tarea}
+\begin{lstlisting}
+    TASK : configuration-design;
+    INPUT :
+      soft requirements : "Preferencias de conducci|ó|n del piloto";
+      hard requirements : "Datos sobre el circuito y meteorolog|í|a";
+    OUTPUT :
+      dise|ñ|o : "Propuesta de dise|ñ|o de un monoplaza";
+    END TASK;
+\end{lstlisting}
+
+\textbf {Método de la tarea}
+\begin{lstlisting}
+    TASK-METHOD: propose-and-revise;
+      REALIZES: configuration-design;
+      DECOMPOSITION:
+        INFERENCES: propose, verify, critique, select, modify;
+      ROLES:
+        INTERMEDIATE:
+          skeletal-design: "Conjunto de elementos de dise|ñ|o";
+          extension: "Un valor nuevo para un |ú|nico design element";
+          violation: "Constraint incumplido por el design actual";
+          truth-value: "Boolean valor de la verificaci|ó|n";
+          action-list: "lista de posibles fixAction";
+          action: "una |ú|nica acci|ó|n de reparaci|ó|n;
+      CONTROL-STRUCTURE;
+          WHILE NEW-SOLUTION propose(skeletal-design + design +
+              soft-requirements -> extension) DO
+            design := extension ADD design;
+            verify(design + hard-requirements -> truth-value +
+                violation);
+            IF truth-value == false
+            THEN
+              critique(violation + design -> action-list);
+              REPEAT
+                select(action-list -> action);
+                modify(design + action -> design);
+                verify(design + hard-requirements -> truth-value +
+                    violation);
+              UNTIL truth-value == true;
+              END REPEAT
+            END IF
+          END WHILE
+    END TASK-METHOD propose-and-revise;
+\end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
