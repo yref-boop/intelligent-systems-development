@@ -203,8 +203,6 @@ Universidade da Coruña \\ Curso
 \subsection{Fase de Identificación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Indicación de la/s tarea/s del formulario OM-3 a las que se referirá el modelo de conocimiento.}
-
 La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, correspondiente a \textbf{Generación de la configuración optima del monoplaza}.
 \begin{table}[H]
     \scriptsize
@@ -263,7 +261,6 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Metodología empleada}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor {red} {Justificación de la selección de la metodología \emph{Middle-in} o \emph{Middle-ou} a aplicar.}
 La metodología escogida para este proyecto es \textit{Middle-out} ya que la plantilla escogida funciona como aproximación correcta de la estructura de inferencias de manera bastante directa.
 
 
@@ -322,6 +319,11 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \node [draw,
         minimum width=2cm,
         minimum height=1cm] at (3,-12) (list) {action list};
+
+    \node [align=center,
+        minimum width=2cm,
+        minimum height=1cm] at (9,-6) (verificacion) {conocimiento de\\verificación};
+
     \draw [-latex] (skeletal design) to (propose);
     \draw [-latex] (soft) to (propose);
     \draw [-latex] (propose) to (extension);
@@ -361,7 +363,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema inicial del dominio}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor {red} {Boceto del que se parte que, posteriormente, se irá refinando al realizar el mapeo de las inferencias, etc.}
 
 \begin{tikzpicture}
     \begin{class}[rectangle split parts=2, text width=4cm]{Requisitos}{0,0}
@@ -397,8 +398,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \subsubsection{Estructura inferencial y Mapeo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Gráfico de la estruatura inferencial (solo si difiere de la plantilla seleccionada) \\ \\ Mapeo de cada una de las inferencias y roles de la plantilla seleccionada.}
-\\[1cm]
 \textbf {Propose}
 \\[0.5cm]
 \inference {skeletal design}{propose}{extension}{design}{design element}
@@ -437,11 +436,45 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \hspace {1cm}
 \inference {design}{modify}{design}{fixAction}{design}
 
+\textbf{Descripciones}
+\begin{description}
+    \item [Propose:] Crear un nuevo elemento a añadir al diseño
+        \hspace*{2cm}
+        \begin{itemize}
+            \item \textbf {Ejemplo:} escoger la altura que va a tener el monoplaza
+            \item \textbf {Conocimiento Estático:} dependencias entre elecciones de componentes; preferencias de componentes
+            \item \textbf {Apuntes:} solo se genera parte de la solución.
+        \end{itemize}
+    \item [Critique:] Dada una propuesta de solución, genera uno o varios problemas relacionados.
+       \begin{itemize}
+            \item \textbf {Ejemplo:} Criticar un posible diseño del coche.
+            \item \textbf {Conocimiento Estático:} Tendencia a ser heurísitca y dependiente del contexto.
+            \item \textbf {Computación:} Actualización básica.
+        \end{itemize}
+    \item [Select:] Escoge un elemento de la lista o conjunto dado.
+        \begin{itemize}
+            \item \textbf {Ejemplo:} Específicamente escoge una acción a tomar, por ejemplo, reducir altura del monoplaza.
+            \item \textbf {Conocimiento Estático:} Conocimiento del dominio.
+            \item \textbf {Computación:} Forward reasoning.
+        \end{itemize}
+    \item [Modify:] Toma descripción del sistema tanto como input como output, con input opcional la acción concreta.
+        \begin{itemize}
+            \item \textbf {Ejemplo:} Modificar el diseño del coche cambiando la altura del modelo.
+            \item \textbf {Conocimiento Estático:} Conocimiento sobre la acción; acción simple o repetible.
+            \item \textbf {Computación:} Actualización básica.
+        \end{itemize}
+    \item [Verify:] Dado un diseño, emite un valor de verdad, indicando si el diseño pasa el test, en caso contrario indica la violación.
+        \begin{itemize}
+            \item \textbf {Ejemplo:} Verificar un diseño de monoplaza.
+            \item \textbf {Conocimiento Estático:} Conocimiento del dominio.
+            \item \textbf {Computación:}  Algoritmos de selección básicos.
+            \item \textbf {Apuntes:} Es una buena candidata al uso de refinamiento gradual: presuponer selección aleatoria e ir añadiendo conocimiento sobre selección más adelante para optimizar el razonamiento.
+        \end{itemize}
+\end{description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Tarea}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor {red} {Especificación de la tarea (entradas y salidas) y Método de la tarea}
 
 \textbf {Especificación de la tarea}
 \begin{lstlisting}
