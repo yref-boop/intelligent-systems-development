@@ -578,6 +578,70 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin {tikzpicture}
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,0) (fixes) {fixes};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-2) (fixAction) {fix action};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-4) (constraint) {constraint};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (3,-6) (designElement) {design element};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (1.5,-8) (component) {component};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (4.5,-8) (parameter) {parameter};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-6.75) (design) {design};
+
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-3) (critiqueE) {critique expression};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (6,-5) (constraintE) {constraint expression};
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
+
+    \draw (component) to (parameter);
+    \draw [-{Latex[open]}] (component) to (designElement);
+    \draw [-{Latex[open]}] (parameter) to (designElement);
+    \draw [-{Diamond[open]}] (design) to (designElement);
+    \draw (calculationE) -- (designElement);
+
+    \draw (designElement) to (8,-6);
+    \draw (8,-6) to (8,-2);
+    \draw (fixAction) to (8,-2);
+
+    \draw (designElement) -- (constraint);
+    \draw (constraint) -- (fixAction);
+    \draw [-{Diamond[open]}] (fixes) -- (fixAction);
+
+    \draw (critiqueE) -- (3,-3);
+    \draw (constraintE) -- (3,-5);
+
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
+
+    \node [draw,
+        rounded corners = 0.5cm,
+        minimum width=2cm,
+        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
+
+\end {tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fase De Refinamiento}
