@@ -530,6 +530,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Tarea}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \textbf {Especificación de la tarea}
 \begin{lstlisting}
     TASK : configuration-design;
@@ -579,6 +580,8 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin {tikzpicture}
+
+    % esquema principal
     \node [draw,
         minimum width=2cm,
         minimum height=1cm] at (3,0) (fixes) {fixes};
@@ -593,13 +596,20 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         minimum height=1cm] at (3,-6) (designElement) {design element};
     \node [draw,
         minimum width=2cm,
-        minimum height=1cm] at (1.5,-8) (component) {component};
+        minimum height=1cm] at (0,-5.5) (component) {component};
     \node [draw,
         minimum width=2cm,
-        minimum height=1cm] at (4.5,-8) (parameter) {parameter};
+        minimum height=1cm] at (0,-7) (parameter) {parameter};
     \node [draw,
         minimum width=2cm,
-        minimum height=1cm] at (0,-6.75) (design) {design};
+        minimum height=1cm] at (3,-8) (design) {design};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (1.75,-9.5) (preference) {preference};
+    \node [draw,
+        minimum width=2cm,
+        minimum height=1cm] at (4.25,-9.5) (property) {property};
+
 
     \node [draw,
         rounded corners = 0.5cm,
@@ -612,13 +622,13 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
+        minimum height=1cm] at (6,-7) (calculationE) {calculation expression};
 
-    \draw (component) to (parameter);
+    \draw [-latex] (component) to (parameter);
     \draw [-{Latex[open]}] (component) to (designElement);
     \draw [-{Latex[open]}] (parameter) to (designElement);
     \draw [-{Diamond[open]}] (design) to (designElement);
-    \draw (calculationE) -- (designElement);
+    \draw (calculationE) -- (3,-7);
 
     \draw (designElement) to (8,-6);
     \draw (8,-6) to (8,-2);
@@ -631,16 +641,10 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \draw (critiqueE) -- (3,-3);
     \draw (constraintE) -- (3,-5);
 
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
+    \draw (preference) -- (design);
+    \draw (property) -- (design);
 
-    \node [draw,
-        rounded corners = 0.5cm,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-5.25) (calculationE) {calculation expression};
-
+    % esquema esopecifico
 \end {tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -657,6 +661,24 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Bases de conocimientos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf {critique-expression}
+\begin{lstlisting}
+    EXPRESSIONS:
+    EXPRESSIONS:
+\end{lstlisting}
+
+\textbf {constraint-expression}
+\begin{lstlisting}
+    EXPRESSIONS:
+    EXPRESSIONS:
+\end{lstlisting}
+
+\textbf {calculation-expression}
+\begin{lstlisting}
+    EXPRESSIONS:
+    EXPRESSIONS:
+\end{lstlisting}
 
 \textcolor {red} {Para estas prácticas, bastará con que las bases de conocimientos contengan TRES o CUATRO instancias de cada tipo de regla encontrado.}
 
