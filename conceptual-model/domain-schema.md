@@ -48,7 +48,7 @@ classDiagram
     int : Desgaste de ICE
     int : Desgaste de MGU-H
     int : Desgaste de MGU-K
-    int : Desgaste de turbo
+    int : Desgaste de TC
     int : Desgaste de ES
     int : Desgaste de CE
     int : Desgaste de escape
@@ -101,7 +101,7 @@ classDiagram
     vecesCambiado: Int
   }
 
-  class Turbo {
+  class TC {
     modelo : String
     vidaUtil : Int
     antiguedad : Int
@@ -119,7 +119,7 @@ classDiagram
     ICE : ICE
     MGU_H : MGU_H
     MGU_K : MGU_K
-    Turbo : turbo
+    TC : TC
     ES : ES
     CE : CE
     Exhaust : exhaust
@@ -146,7 +146,7 @@ classDiagram
   ICE ..> UnidadPotencia
   MGU_H ..> UnidadPotencia
   MGU_K ..> UnidadPotencia
-  Turbo ..> UnidadPotencia
+  TC ..> UnidadPotencia
   ES ..> UnidadPotencia
   CE ..> UnidadPotencia
   Exhaust ..> UnidadPotencia
