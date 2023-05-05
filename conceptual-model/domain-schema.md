@@ -3,9 +3,10 @@
 ```mermaid
 classDiagram
   class Hard Requirements {
-    PreferenciasPiloto : piloto
-    CaracteristicasCircuito : circuito
-    Meteorologia : meteorologia
+    Requisitos Ruedas         : ruedas
+    Caracteristicas Circuito  : circuito
+    Meteorologia              : meteorologia
+    Estado Coche              : coche
   }
 
   class Meteorologia {
@@ -17,13 +18,8 @@ classDiagram
     int   : Precipitaciones
     int   : Presión atmosférica
   }
-  
-  class PreferenciasPiloto {
-    enum : actitud
-    enum : comportamientoCoche
-  }
 
-  class CaracteristicasCircuito {
+  class Caracteristicas Circuito {
     enum  : Tracción
     enum  : Frenada
     enum  : Fuerza lateral
@@ -35,6 +31,32 @@ classDiagram
     int   : Número de curvas rápidas
     int   : Número de curvas lentas
     float : Longitud
+  }
+  
+  class Requisitos Ruedas {
+    enum  : Compuesto disponible duro
+    enum  : Compuesto disponible medio
+    enum  : Compuesto disponible blando
+    float : Presión mínima inicial ruedas delanteras
+    float : Presión mínima inicial ruedas traseras
+    float : Límite de inclinación EOS ruedas delanteras
+    float : Límite de inclinación EOS ruedas traseras
+  }
+  
+  class Estado Coche {
+    int : Caja de cambios
+    int : ICE
+    int : MGU-H
+    int : MGU-K
+    int : Turbo
+    int : ES
+    int : CE
+    int : Escape
+  }
+  
+  class PreferenciasPiloto {
+    enum : Actitud
+    enum : Comportamiento del coche
   }
 
   class ICE {
@@ -129,7 +151,8 @@ classDiagram
   CE ..> UnidadPotencia
   Exhaust ..> UnidadPotencia
 
-  Meteorologia ..> Requisitos
-  PreferenciasPiloto ..> Requisitos
-  CaracteristicasCircuito ..> Requisitos
+  Meteorologia ..> Hard Requirements
+  Caracteristicas Circuito ..> Hard Requirements
+  Requisitos Ruedas ..> Hard Requirements
+  Estado Coche ..> Hard Requirements
 ```
