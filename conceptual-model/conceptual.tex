@@ -579,72 +579,156 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hspace*{-50pt}
 \begin {tikzpicture}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 0.75cm]{ICE}{0,-2}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 1.5cm]{MGU-H}{ICE.north west}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 1.5cm]{MGU-K}{MGU-H.north west}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 0.75cm]{TC}{MGU-K.north west}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 0.75cm]{ES}{TC.north west}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 0.75cm]{CE}{ES.north west}
+    \end{class}
+    \begin{class}[rectangle split parts=1, xshift=+33mm, text width = 2cm]{Exhaust}{CE.north west}
+    \end{class}
 
-    % esquema principal
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (3,0) (fixes) {fixes};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (3,-2) (fixAction) {fix action};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (3,-4) (constraint) {constraint};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (3,-6) (designElement) {design element};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-5.5) (component) {component};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (0,-7) (parameter) {parameter};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (3,-8) (design) {design};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (1.75,-9.5) (preference) {preference};
-    \node [draw,
-        minimum width=2cm,
-        minimum height=1cm] at (4.25,-9.5) (property) {property};
+    \begin{class}[rectangle split parts=2, text width = 2.75cm]{Unidad Potencia}{15.5,2.5}
+        \attribute {vidaUtil : int}
+        \attribute {antigüedad : int}
+        \attribute {vecesCambiado : int}
+    \end {class}
 
+    \begin {class} [rectangle split parts = 1, text width = 2cm] {Piezas} {10,4}
+    \end {class}
 
+    \begin {class} [rectangle split parts = 2, text width = 3cm] {Caja Cambios} {4.5,2.5}
+        \attribute {vidaUtil: int}
+        \attribute {antigüedad : int}
+        \attribute {vecesCambiado : int}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 6cm] {Ruedas} {10,2}
+        \attribute {compuesto : enum \{C1, C2,C3, C4, C5, C6\}}
+        \attribute {inclinación vertical EOS delantera : float}
+        \attribute {inclinación vertical EOS trasera : float}
+        \attribute {inclinación horizontal EOS delantera : float}
+        \attribute {inclinación horizontal EOS delantera : float}
+        \attribute {presión delantera : float}
+        \attribute {presión trasera : float}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 6cm] {Monoplaza} {10,11}
+        \attribute {alerón delantero :\{\}}
+        \attribute {alerón trasero : \{\}}
+        \attribute {carga de combustible : float}
+        \attribute {carga aerodinámica alerón delantero : enum \{\}}
+        \attribute {carga aerodinámica alerón trasero : enum \{\}}
+        \attribute {ajuste del diferencial : int}
+        \attribute {suspensión delantera : enum \{\}}
+        \attribute {suspensión trasera : enum \{\}}
+        \attribute {altura delantera : int}
+        \attribute {altura trasera : int}
+        \attribute {presión de frenos : int}
+        \attribute {sesgo de frenos delanteros : int}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 4cm] {Preferencias} {3,6}
+        \attribute {actitud piloto : enum \{agresiva, segura\}}
+        \attribute {comportamiento coche : enun \{\}}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Meteorologia} {16,15}
+        \attribute {temperatura ambiental : float}
+        \attribute {temperatura asfalto : float}
+        \attribute {velocidad viento : int}
+        \attribute {dirección viento : enum \{N, NE, E, SE, S, SO, O, NO\}}
+        \attribute {humedad : int}
+        \attribute {presion atmosférica : int}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Desgaste} {16,11}
+        \attribute {desgaste caja cambios : int}
+        \attribute {desgaste ICE : int}
+        \attribute {desgaste MGU-H : int}
+        \attribute {desgaste MGU-K : int}
+        \attribute {desgaste TC : int}
+        \attribute {desgaste ES : int}
+        \attribute {desgaste CE : int}
+        \attribute {desgaste Exhaust : int}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 3cm] {Requisitos} {10,14}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 5.5cm] {Propiedades Circuito} {3,15}
+        \attribute {tracción : enum \{\}}
+        \attribute {frenada : enum \{\}}
+        \attribute {fuerza lateral : enum \{\}}
+        \attribute {estrés ruedas : \{\}}
+        \attribute {evolución de la pista : enum\{\}}
+        \attribute {agarre del asfalto : enum\{\}}
+        \attribute {carga aerodinámica : enum \{\}}
+        \attribute {número de vueltas : int}
+        \attribute {número curvas rápidas : int}
+        \attribute {número curvas lentas : int}
+        \attribute {logitud : float}
+        \attribute {compuesto neumatico duro : enum \{\}}
+        \attribute {compuesto neumatico medio : enum \{\}}
+        \attribute {compuesto neumatico blando : enum \{\}}
+        \attribute {presion minima inicial ruedas delanteras : float}
+        \attribute {presion minima inicial ruedas traseras : float}
+        \attribute {límite inclinación lateral EOS ruedas delanteras : float}
+        \attribute {límite inclinación lateral EOS ruedas traseras : float}
+    \end {class}
+
+    \begin {class} [rectangle split parts = 2, text width = 3cm] {Fix} {10,17}
+    \end {class}
+    \begin {class} [rectangle split parts = 2, text width = 3cm] {FixList} {10,20}
+    \end {class}
+ 
+    % rules
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (6,-3) (critiqueE) {critique expression};
+        minimum height=1cm] at (8,5) (calculation expression) {calculation expression};
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (6,-5) (constraintE) {constraint expression};
+        minimum height=1cm] at (8,15.2) (constraint expression) {constraint expression};
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (6,-7) (calculationE) {calculation expression};
+        minimum height=1cm] at (8,12.1) (critique expression) {critique expression};
 
-    \draw [-latex] (component) to (parameter);
-    \draw [-{Latex[open]}] (component) to (designElement);
-    \draw [-{Latex[open]}] (parameter) to (designElement);
-    \draw [-{Diamond[open]}] (design) to (designElement);
-    \draw (calculationE) -- (3,-7);
+    % knowledge links
+    \draw [dashed] (calculation expression) to (10,5);
+    \draw [dashed] (critique expression) to (10,12.1);
+    \draw [dashed] (constraint expression) to (10,15.2);
 
-    \draw (designElement) to (8,-6);
-    \draw (8,-6) to (8,-2);
-    \draw (fixAction) to (8,-2);
+    % central vertical lines bottom-up
+    \draw [-{Diamond[open]}](10,4) -- (10,5.9);
+    \draw (10,11) -- (10,13.15);
+    \draw (10,14) -- (10,16.2);
+    \draw [-{Diamond[open]}] (10,17) -- (10,19.2);
 
-    \draw (designElement) -- (constraint);
-    \draw (constraint) -- (fixAction);
-    \draw [-{Diamond[open]}] (fixes) -- (fixAction);
+    % requisitos
+    \draw (8.35,13.45) -- (5.9,13.45);
+    \draw (11.65,13.45) -- (14.1,13.45);
+    \draw (11.65,13.45) -- (14.1,11);
 
-    \draw (critiqueE) -- (3,-3);
-    \draw (constraintE) -- (3,-5);
+    % preferencias
+    \draw (5.15,6) -- (6.9,7)
 
-    \draw (preference) -- (design);
-    \draw (property) -- (design);
+    % piezas
+    \draw [-latex] (10,3.5) -- (6.1,2.5);
+    \draw [-latex] (10,3.5) -- (10,2);
+    \draw [-latex] (10,3.5) -- (14,2.5);
 
-    % esquema esopecifico
+
 \end {tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
