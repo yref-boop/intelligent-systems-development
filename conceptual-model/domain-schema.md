@@ -34,24 +34,24 @@ classDiagram
   }
   
   class Requisitos Ruedas {
-    enum  : Compuesto disponible duro
-    enum  : Compuesto disponible medio
-    enum  : Compuesto disponible blando
-    float : Presión mínima inicial ruedas delanteras
-    float : Presión mínima inicial ruedas traseras
-    float : Límite de inclinación EOS ruedas delanteras
-    float : Límite de inclinación EOS ruedas traseras
+    enum  : Compuesto disponible para neumático duro
+    enum  : Compuesto disponible para neumático medio
+    enum  : Compuesto disponible para neumático blando
+    float : Presión mínima inicial en las ruedas delanteras
+    float : Presión mínima inicial en las ruedas traseras
+    float : Límite de inclinación EOS en las ruedas delanteras
+    float : Límite de inclinación EOS en las ruedas traseras
   }
   
   class Estado Coche {
-    int : Caja de cambios
-    int : ICE
-    int : MGU-H
-    int : MGU-K
-    int : Turbo
-    int : ES
-    int : CE
-    int : Escape
+    int : Desgaste de caja de cambios
+    int : Desgaste de ICE
+    int : Desgaste de MGU-H
+    int : Desgaste de MGU-K
+    int : Desgaste de turbo
+    int : Desgaste de ES
+    int : Desgaste de CE
+    int : Desgaste de escape
   }
   
   class PreferenciasPiloto {
