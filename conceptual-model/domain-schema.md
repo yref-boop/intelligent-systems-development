@@ -2,19 +2,20 @@
 ### domain schema
 ```mermaid
 classDiagram
-  class Requisitos {
+  class Hard Requirements {
     PreferenciasPiloto : piloto
     CaracteristicasCircuito : circuito
     Meteorologia : meteorologia
   }
 
   class Meteorologia {
-    float : probLluvia
-    float : mmAgua
-    float : temperaturaAmbiental
-    float : temperaturaAsfalto
-    float : velocidadViento
-    float : presionAtmosferica
+    float : Temperatura del ambiente
+    float : Temperatura del asfalto
+    int   : Velocidad del viento
+    enum  : Dirección del viento
+    int   : Humedad
+    int   : Precipitaciones
+    int   : Presión atmosférica
   }
   
   class PreferenciasPiloto {
@@ -23,10 +24,17 @@ classDiagram
   }
 
   class CaracteristicasCircuito {
-    float : numeroCurvasLentas
-    float : numeroCurvasRapidas
-    float : longitud
-    float : variacionPendiente
+    enum  : Tracción
+    enum  : Frenada
+    enum  : Fuerza lateral
+    enum  : Estrés a las ruedas
+    enum  : Evolución de la pista
+    enum  : Agarre del asfalto
+    enum  : Carga aerodinámica
+    int   : Número de vueltas
+    int   : Número de curvas rápidas
+    int   : Número de curvas lentas
+    float : Longitud
   }
 
   class ICE {
