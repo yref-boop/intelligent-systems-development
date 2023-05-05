@@ -36,8 +36,8 @@ classDiagram
     enum  : Compuesto disponible para neumático blando
     float : Presión mínima inicial en las ruedas delanteras
     float : Presión mínima inicial en las ruedas traseras
-    float : Límite de inclinación EOS en las ruedas delanteras
-    float : Límite de inclinación EOS en las ruedas traseras
+    float : Límite de inclinación lateral EOS en las ruedas delanteras
+    float : Límite de inclinación lateral EOS en las ruedas traseras
   }
   
   class Estado Coche {
@@ -57,87 +57,100 @@ classDiagram
   }
 
   class ICE {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
   class MGU_H {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
   class MGU_K {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
   class ES {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
   class CE {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
-  class Exhaust {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+  class Escape {
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
   class TC {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado: Int
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
 
-  class CajaCambios {
-    modelo : String
-    vidaUtil : Int
-    antiguedad : Int
-    vecesCambiado : Int
+  class Caja Cambios {
+    string : Modelo
+    int    : Vida útil
+    int    : Antigüedad
+    int    : Veces cambiado
   }
   
-  class UnidadPotencia {
-    ICE : ICE
-    MGU_H : MGU_H
-    MGU_K : MGU_K
-    TC : TC
-    ES : ES
-    CE : CE
-    Exhaust : exhaust
+  class Unidad Potencia {
+    ICE     : ICE
+    MGU_H   : MGU_H
+    MGU_K   : MGU_K
+    TC      : TC
+    ES      : ES
+    CE      : CE
+    Escape  : Escape
   }
 
   class Ruedas {
-    compuesto : enum
-    float : camber
-    float : pressure
+    enum  : Compuesto
+    float : Inclinación vertical EOS de las ruedas delanteras
+    float : Inclinación vertical EOS de las ruedas traseras
+    float : Inclinación horizontal EOS de las ruedas delanteras
+    float : Inclinación horizontal EOS de las ruedas traseras
+    float : Presión inicial de las ruedas delanteras
+    float : Presión inicial de las ruedas traseras
   }
   
   class Coche {
-    aleronDelantero : enum
-    aleronTrasero : enum
-    float : altura
-    CajaCambios : cajaCambios
-    UnidadPotencia : unidadPotencia
+    enum : Alerón delantero
+    enum : Alerón trasero
+    Caja Cambios : Caja de cambios
+    Unidad Potencia : Unidad de potencia
+    float : Carga de combustible
+    enum : Carga aerodinámica del alerón delantero
+    enum : Carga aerodinámica del alerón trasero
+    int : Ajuste del diferencial
+    enum : Suspensión delantera
+    enum : Suspensión trasera
+    int : Altura delantera
+    int : Altura trasera
+    int : Presión de frenos
+    int : Sesgo de frenos delanteros
    }
   
-  UnidadPotencia ..> Coche
-  CajaCambios ..> Coche
+  Unidad Potencia ..> Coche
+  Caja Cambios ..> Coche
   Ruedas ..> Coche
 
   ICE ..> UnidadPotencia
