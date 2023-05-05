@@ -31,9 +31,6 @@ classDiagram
     int   : Número de curvas rápidas
     int   : Número de curvas lentas
     float : Longitud
-  }
-  
-  class Requisitos Ruedas {
     enum  : Compuesto disponible para neumático duro
     enum  : Compuesto disponible para neumático medio
     enum  : Compuesto disponible para neumático blando
@@ -153,6 +150,5 @@ classDiagram
 
   Meteorologia ..> Hard Requirements
   Caracteristicas Circuito ..> Hard Requirements
-  Requisitos Ruedas ..> Hard Requirements
   Estado Coche ..> Hard Requirements
 ```
