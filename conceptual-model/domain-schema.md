@@ -91,7 +91,7 @@ classDiagram
     int    : Veces cambiado
   }
 
-  class Escape {
+  class Exhaust {
     string : Modelo
     int    : Vida útil
     int    : Antigüedad
