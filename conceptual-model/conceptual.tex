@@ -6,6 +6,8 @@
 \usepackage{tabularx}
 \usepackage{sectsty}
 \usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs}
 
 % color del texto
 \usepackage {xcolor}
@@ -269,19 +271,179 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
 \subsubsection{Glosario}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {BREVE glosario de términos incluyendo sólo aquellos que no sean de uso común. Es decir, lo mínimo necesario para que una persona ajena al dominio que habéis elegido pueda entender el conocimiento que extraigáis.}
+\begin{itemize}
+    \item \textbf{ICE}: de sus siglas en inglés, Motor de Combustión Interna.
+    \item \textbf{MGU-H}: de sus siglas en inglés, Motor-Generador de Calor, recupera la energía generada por el calor.
+    \item \textbf{MGU-K}: de sus siglas en inglés, Motor-Generador de Cinética, recupera la energía generada por las cargas cinéticas como, por ejemplo, las frenadas.
+    \item \textbf{ES}: de sus siglas en inglés, Almacenador de Energía. Almacena la energía eléctrica generada por las unidades de recuperación de energía (MGU-H y MGU-K). 
+    \item \textbf{CE}: de sus siglas en inglés, Control Electrónico. Controla y monitorea el funcionamiento de la unidad de potencia híbrida del coche.
+    \item \textbf{Exhaust}: del nombre en inglés, sistema de escape de la Unidad de Potencia. Permite que los gases de escape generados por la combustión del combustible dentro del motor salgan del motor de manera segura y eficiente.
+    \item \textbf{EOS}: de sus siglas en inglés, Fin de Recta, indica que la forma que se debe medir, en este caso, la inclinación vertical de las ruedas, es al final de una recta donde el monoplaza tiene su mayor carga aerodinámica.
+    \item \textbf{Diferencial}: componente que se utiliza para permitir que las ruedas de la parte trasera del coche giren a diferentes velocidades mientras el coche está girando o acelerando en línea recta. En los coches de Fórmula 1, el diferencial está diseñado para ser altamente ajustable y se puede adaptar a las condiciones específicas de la pista y del coche. Desde dentro del coche, los pilotos también pueden ajustar la configuración del diferencial utilizando los controles en el volante.
+    \item \textbf{Sesgo de freno}: configuración que se refiere a la proporción de frenado entre las ruedas delanteras y traseras del coche. Se puede ajustar para lograr un equilibrio óptimo entre la frenada y el rendimiento de la dirección en diferentes situaciones.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Escenarios}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Descripción de un par de escenarios de uso: ejemplos de entradas y salidas sobre los que se aplicará el sistema que proponéis. Tienen que ser compatibles son las entradas y salidas que habéis puesto en el TM-1 de la tarea que vais a implementar. Servirán para seleccionar la plantilla inferencial y para validar el modelo de conocimiento.}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{Circuito: \textbf{Bahrein}} \\ \midrule
+        Tracción & 1 2 3 \underline{\textbf{4}} 5 \\
+        Evolución de la pista & 1 2 3 \underline{\textbf{4}} 5 \\
+        Frenada & 1 2 3 \underline{\textbf{4}} 5 \\
+        Agarre del asfalto & 1 2 \underline{\textbf{3}} 4 5 \\
+        Fuerza lateral & 1 2 \underline{\textbf{3}} 4 5 \\
+        Estrés a las ruedas & 1 2 \underline{\textbf{3}} 4 5 \\
+        Carga aerodinámica & 1 2 \underline{\textbf{3}} 4 5 \\
+        Abrasión del asfalto & 1 2 3 4 \underline{\textbf{5}} \\
+        Número de vueltas & 57 \\
+        Longitud del circuito & 5'412 km \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Requisitos de las ruedas}} \\ \midrule
+        Compuestos secos disponibles (duro -- medio -- blando) & C1 -- C2 -- C3 \\
+        Presión mínima inicial (delanteras -- traseras) & 21'0 psi -- 18'5 psi \\
+        Límite de inclinación vertical (delanteras -- traseras) & -$3'50^\circ$ -- -$2'00^\circ$ \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Estado del coche}} \\ \midrule
+        Caja de cambios & 14\% \\
+        ICE & 73\% \\
+        MGU-H & 38\% \\
+        MGU-K & 35\% \\
+        TC & 80\% \\
+        ES & 76\% \\
+        CE & 27\% \\
+        Escape & 46\% \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Meteorología}} \\ \midrule
+        Temperatura del ambiente & $34^\circ C$ \\
+        Temperatura del asfalto & $49^\circ C$ \\
+        Velocidad del viento & 19 km/h \\
+        Dirección del viento & N \\
+        Humedad & 47\% \\
+        Precipitaciones & 0mm \\
+        Presión atmosférica & 1019 mbar \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \caption{entradas del primer escenario.}
+    \label{tab:in_esc_1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{Circuito: \textbf{Barcelona-Catalunya}} \\ \midrule
+        Tracción & 1 2 \underline{\textbf{3}} 4 5 \\
+        Evolución de la pista & 1 2 \underline{\textbf{3}} 4 5 \\
+        Frenada & 1 2 \underline{\textbf{3}} 4 5 \\
+        Agarre del asfalto & 1 2 \underline{\textbf{3}} 4 5 \\
+        Fuerza lateral & 1 2 3 \underline{\textbf{4}} 5 \\
+        Estrés a las ruedas & 1 2 3 \underline{\textbf{4}} 5 \\
+        Carga aerodinámica & 1 2 3 \underline{\textbf{4}} 5 \\
+        Abrasión del asfalto & 1 2 3 \underline{\textbf{4}} 5 \\
+        Número de vueltas & 66 \\
+        Longitud del circuito & 4'675 km \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Requisitos de las ruedas}} \\ \midrule
+        Compuestos secos disponibles (duro -- medio -- blando) & C1 -- C2 -- C3 \\
+        Presión mínima inicial (delanteras -- traseras) & 22'5 psi -- 19'0 psi \\
+        Límite de inclinación vertical (delanteras -- traseras) & -$3'25^\circ$ -- -$1'75^\circ$ \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Estado del coche}} \\ \midrule
+        Caja de cambios & 40\% \\
+        ICE & 20\% \\
+        MGU-H & 78\% \\
+        MGU-K & 83\% \\
+        TC & 33\% \\
+        ES & 2\% \\
+        CE & 10\% \\
+        Escape & 6\% \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Meteorología}} \\ \midrule
+        Temperatura del ambiente & $24^\circ C$ \\
+        Temperatura del asfalto & $29^\circ C$ \\
+        Velocidad del viento & 14 km/h \\
+        Dirección del viento & SE \\
+        Humedad & 70\% \\
+        Precipitaciones & 0mm \\
+        Presión atmosférica & 1024 mbar \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \caption{entradas del segundo escenario.}
+    \label{tab:in_esc_2}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{Circuito: \textbf{Suzuka}} \\ \midrule
+        Tracción & 1 2 \underline{\textbf{3}} 4 5 \\
+        Frenada & 1 \underline{\textbf{2}} 3 4 5 \\
+        Fuerza lateral & 1 2 3 4 \underline{\textbf{5}} \\
+        Estrés a las ruedas & 1 2 3 4 \underline{\textbf{5}} \\
+        Evolución de la pista & 1 2 \underline{\textbf{3}} 4 5 \\
+        Agarre del asfalto & 1 2 3 \underline{\textbf{4}} 5 \\
+        Abrasión del asfalto & 1 2 3 \underline{\textbf{4}} 5 \\
+        Carga aerodinámica & 1 2 3 \underline{\textbf{4}} 5 \\
+        Número de vueltas & 53 \\
+        Longitud del circuito & 5'807 km \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Requisitos de las ruedas}} \\ \midrule
+        Compuestos secos disponibles (duro -- medio -- blando) & C1 -- C2 -- C3 \\
+        Presión mínima inicial (delanteras -- traseras) & 25'0 psi -- 23'0 psi \\
+        Límite de inclinación vertical (delanteras -- traseras) & -$2'75^\circ$ -- -$1'50^\circ$ \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Estado del coche}} \\ \midrule
+        Caja de cambios & 4\% \\
+        ICE & 18\% \\
+        MGU-H & 3\% \\
+        MGU-K & 9\% \\
+        TC & 8\% \\
+        ES & 17\% \\
+        CE & 5\% \\
+        Escape & 19\% \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \begin{tabular}{lr}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Meteorología}} \\ \midrule
+        Temperatura del ambiente & $14^\circ C$ \\
+        Temperatura del asfalto & $17^\circ C$ \\
+        Velocidad del viento & 28 km/h \\
+        Dirección del viento & N \\
+        Humedad & 94\% \\
+        Precipitaciones & 120 mm \\
+        Presión atmosférica & 1018 mbar \\ \bottomrule
+    \end{tabular} \\ \vspace{1em}
+    \caption{entradas del tercer escenario.}
+    \label{tab:in_esc_2}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Elementos reutilizables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textcolor {red} {Elementos reutilizables que se hubiesen desarrollado con anterioridad, tales como esquemas de bases de datos ya existentes que podáis tomar como punto de partida para vuestro esquema del dominio. Probablemente no haya ninguno, pero...}
+
+La escudería para la que trabajamos ya dispone de bases de datos completas sobre los circuitos en los que se celebrarán todas las carreras de esta temporada, y tiene acceso a históricos meteorológicos de anteriores celebraciones de Grandes Premios en cada circuito.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,7 +469,7 @@ La metodología escogida para este proyecto es \textit{Middle-out} ya que la pla
 
 \textcolor {red} {Gráfico con la plantilla notada. Todas las modificaciones propuestas sobre la plantilla original deberán justificarse en este punto.}
 La plantilla seleccionada es la de \textit{configuration design}, modificada ligeramente para adaptarse mejor a la naturaleza de nuestro problema:
-
+\begin{center}
 \begin {tikzpicture}
     \node [draw,
         minimum width=2cm,
@@ -397,20 +559,21 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \draw [-latex] (action) to (modify);
     \draw [-latex] (design) to (propose);
     \draw [-latex] (design) to (verify);
-\end {tikzpicture}
+\end {tikzpicture}    
+\end{center}
 
 \subsubsection {Anotaciones}
 \begin {description}
     \item [Cambios:] Debido a la naturaleza de los datos de entrada, consideramos innecesarias las inferencias \textit {specify} y \textit {operationalize}. Nuestros datos ya vienen formateados y separados de manera que se puedan introducir directamente en el sistema como \textit {soft} y \textit {hard requirements}, pasando estos dos a ser los inputs de nuestro sistema.
     \item [Soft requirements:] Requisitos a usar como preferencias. En nuestro caso, las preferencias de conducción del piloto.
     \item [Hard requirements:] Requisitos obligatorios. Ej: Necesario que el coche sea capaz de adaptarse a altas temperaturas si las temperaturas previstas son altas.
-    \item [Skeletal design:] Colección de componentes que debe contener la solución: En nuestro caso, 4 ruedas, un motor, alerón,...
+    \item [Skeletal design:] Colección de componentes que debe contener la solución: En nuestro caso, 4 ruedas, un motor, alerones, etc.
     \item [Extension:] Crear una extensión de diseño, basándonos en las preferencias de la base de conocimiento. Ej: Neumáticos duros.
     \item [Truth value:] Resultado booleano de verificar si el diseño propuesto es consistente o no. Ej: El coche una mayor cantidad de combustible al marcado en el reglamento por lo que devuelve false.
     \item [Violation:] Restricción incumplida por el diseño actual. Ej: Reglamento incumplido - Capacidad de combustible sobrepasada
     \item [Action list:] Lista ordenada de posibles acciones para arreglar problemas del diseño actual. Ej: Para "Reglamento incumplido - Capacidad de combustible sobrepasada", elegimos otro depósito con menor capacidad; para "Reglamento incumplido - Potencia del motor sobrepasada", elegimos otro con menor potencia.
-    \item [Action:] Una simple acción para arreglar problemas del diseño actual. Ej: Para "Reglamento incumplido - Capacidad de combustible sobrepasada", elegimos otro depósito con menor capacidad.
-    \item [Design:] Nuevo diseño propuesto tras aplicar el fix al diseño anterior. Ej: Otro coche con características similares con un depósito de combustible reglamentario.
+    \item [Action:] Una simple acción para arreglar problemas del diseño actual. Ej: Para \emph{Reglamento incumplido - Capacidad de combustible sobrepasada}, cargamos al coche con menos combustible.
+    \item [Design:] Nuevo diseño propuesto tras aplicar el arreglo al diseño anterior. Ej: Otro coche con características similares con la cantidad de combustible reglamentaria.
 \end {description}
 
 
@@ -454,9 +617,9 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 
 \textbf {Propose}
 \\[0.5cm]
-\logicinference {skeletal design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
-\hspace {1cm}
-\logicinference {design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
+    \logicinference {skeletal design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
+    \hspace {1cm}
+    \logicinference {design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
 \\[1cm]
 \logicinference {soft requirements}{propose}{extension}{preferences}{design element}{conocimiento de\\propuesta}{calculation-expression}
 \\[1cm]
@@ -495,34 +658,34 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \item [Propose:] Crear un nuevo elemento a añadir al diseño
         \hspace*{2cm}
         \begin{itemize}
-            \item \textbf {Ejemplo:} escoger la altura que va a tener el monoplaza
-            \item \textbf {Conocimiento Estático:} dependencias entre elecciones de componentes; preferencias de componentes
+            \item \textbf {Ejemplo:} escoger la altura que va a tener el monoplaza.
+            \item \textbf {Conocimiento Estático:} dependencias entre elecciones de componentes; preferencias de componentes.
             \item \textbf {Apuntes:} solo se genera parte de la solución.
         \end{itemize}
-    \item [Critique:] Dada una propuesta de solución, genera uno o varios problemas relacionados.
+    \item [Critique:] dada una propuesta de solución, genera uno o varios problemas relacionados.
        \begin{itemize}
-            \item \textbf {Ejemplo:} Criticar un posible diseño del coche.
-            \item \textbf {Conocimiento Estático:} Tendencia a ser heurísitca y dependiente del contexto.
-            \item \textbf {Computación:} Actualización básica.
+            \item \textbf {Ejemplo:} criticar un posible diseño del coche.
+            \item \textbf {Conocimiento Estático:} tendencia a ser heurísitca y dependiente del contexto.
+            \item \textbf {Computación:} actualización básica.
         \end{itemize}
-    \item [Select:] Escoge un elemento de la lista o conjunto dado.
+    \item [Select:] escoge un elemento de la lista o conjunto dado.
         \begin{itemize}
-            \item \textbf {Ejemplo:} Específicamente escoge una acción a tomar, por ejemplo, reducir altura del monoplaza.
-            \item \textbf {Conocimiento Estático:} Conocimiento del dominio.
-            \item \textbf {Computación:} Forward reasoning.
+            \item \textbf {Ejemplo:} específicamente escoge una acción a tomar, por ejemplo, reducir la altura del monoplaza.
+            \item \textbf {Conocimiento Estático:} conocimiento del dominio.
+            \item \textbf {Computación:} \emph{forward reasoning}.
         \end{itemize}
-    \item [Modify:] Toma descripción del sistema tanto como input como output, con input opcional la acción concreta.
+    \item [Modify:] tomando el diseño como entrada, con una entrada opcional siendo la acción concreta a realizar, obtiene un nuevo y actualizado diseño.
         \begin{itemize}
-            \item \textbf {Ejemplo:} Modificar el diseño del coche cambiando la altura del modelo.
-            \item \textbf {Conocimiento Estático:} Conocimiento sobre la acción; acción simple o repetible.
-            \item \textbf {Computación:} Actualización básica.
+            \item \textbf {Ejemplo:} modificar el diseño del coche cambiando la altura del modelo.
+            \item \textbf {Conocimiento Estático:} conocimiento sobre la acción; acción simple o repetible.
+            \item \textbf {Computación:} actualización básica.
         \end{itemize}
-    \item [Verify:] Dado un diseño, emite un valor de verdad, indicando si el diseño pasa el test, en caso contrario indica la violación.
+    \item [Verify:] dado un diseño, emite un valor booleano, indicando si el diseño pasa el test, en caso contrario indica la violación.
         \begin{itemize}
-            \item \textbf {Ejemplo:} Verificar un diseño de monoplaza.
-            \item \textbf {Conocimiento Estático:} Conocimiento del dominio.
-            \item \textbf {Computación:}  Algoritmos de selección básicos.
-            \item \textbf {Apuntes:} Es una buena candidata al uso de refinamiento gradual: presuponer selección aleatoria e ir añadiendo conocimiento sobre selección más adelante para optimizar el razonamiento.
+            \item \textbf {Ejemplo:} verificar un diseño de monoplaza.
+            \item \textbf {Conocimiento Estático:} conocimiento del dominio.
+            \item \textbf {Computación:} algoritmos de selección básicos.
+            \item \textbf {Apuntes:} es una buena candidata al uso de refinamiento gradual. Se presupone una selección aleatoria e ir añadiendo conocimiento sobre la selección más adelante, para optimizar el razonamiento.
         \end{itemize}
 \end{description}
 
@@ -530,7 +693,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Tarea}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \textbf {Especificación de la tarea}
 \begin{lstlisting}
     TASK : configuration-design;
@@ -552,9 +714,9 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
           skeletal-design: "conjunto de elementos de dise|ñ|o";
           extension: "un valor nuevo para un |ú|nico design element";
           violation: "constraint incumplido por el design actual";
-          truth-value: "boolean valor de la verificaci|ó|n";
+          truth-value: "booleano valor de la verificaci|ó|n";
           action-list: "lista de posibles fixAction";
-          action: "una |ú|nica acci|ó|n de reparaci|ó|n;
+          action: "una |ú|nica acci|ó|n de reparaci|ó|n";
       CONTROL-STRUCTURE;
           WHILE NEW-SOLUTION propose(skeletal-design + design +
               soft-requirements -> extension) DO
@@ -595,24 +757,20 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \end{class}
     \begin{class}[rectangle split parts=1, xshift=+33mm, text width = 2cm]{Exhaust}{CE.north west}
     \end{class}
-
     \begin{class}[rectangle split parts=2, text width = 2.75cm]{Unidad Potencia}{15.5,2.5}
         \attribute {vidaUtil : int}
         \attribute {antigüedad : int}
         \attribute {vecesCambiado : int}
     \end {class}
-
     \begin {class} [rectangle split parts = 1, text width = 2cm] {Piezas} {10,4}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 3cm] {Caja Cambios} {4.5,2.5}
         \attribute {vidaUtil: int}
         \attribute {antigüedad : int}
         \attribute {vecesCambiado : int}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 6cm] {Ruedas} {10,2}
-        \attribute {compuesto : enum \{C1, C2,C3, C4, C5, C6\}}
+        \attribute {compuesto : enum \{C1, C2, C3, C4, C5, C6\}}
         \attribute {inclinación vertical EOS delantera : float}
         \attribute {inclinación vertical EOS trasera : float}
         \attribute {inclinación horizontal EOS delantera : float}
@@ -620,7 +778,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {presión delantera : float}
         \attribute {presión trasera : float}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 6cm] {Monoplaza} {10,11}
         \attribute {alerón delantero :\{\}}
         \attribute {alerón trasero : \{\}}
@@ -635,12 +792,10 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {presión de frenos : int}
         \attribute {sesgo de frenos delanteros : int}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 4cm] {Preferencias} {3,6}
         \attribute {actitud piloto : enum \{agresiva, segura\}}
-        \attribute {comportamiento coche : enun \{\}}
+        \attribute {comportamiento coche : enum \{sobrevirador, subvirador\}}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Meteorologia} {16,15}
         \attribute {temperatura ambiental : float}
         \attribute {temperatura asfalto : float}
@@ -649,7 +804,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {humedad : int}
         \attribute {presion atmosférica : int}
     \end {class}
-
+    
     \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Desgaste} {16,11}
         \attribute {desgaste caja cambios : int}
         \attribute {desgaste ICE : int}
@@ -660,31 +815,28 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {desgaste CE : int}
         \attribute {desgaste Exhaust : int}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 3cm] {Requisitos} {10,14}
     \end {class}
-
-    \begin {class} [rectangle split parts = 2, text width = 5.5cm] {Propiedades Circuito} {3,15}
-        \attribute {tracción : enum \{\}}
-        \attribute {frenada : enum \{\}}
-        \attribute {fuerza lateral : enum \{\}}
-        \attribute {estrés ruedas : \{\}}
-        \attribute {evolución de la pista : enum\{\}}
-        \attribute {agarre del asfalto : enum\{\}}
-        \attribute {carga aerodinámica : enum \{\}}
+    \begin {class} [rectangle split parts = 2, text width = 5.5cm] {Propiedades Circuito} {3,16} 
+        \attribute {tracción : enum \{1,2,3,4,5\}}
+        \attribute {frenada : enum \{1,2,3,4,5\}}
+        \attribute {fuerza lateral : enum \{1,2,3,4,5\}}
+        \attribute {estrés ruedas : \{1,2,3,4,5\}}
+        \attribute {evolución de la pista : enum\{1,2,3,4,5\}}
+        \attribute {agarre del asfalto : enum\{1,2,3,4,5\}}
+        \attribute {carga aerodinámica : enum \{1,2,3,4,5\}}
         \attribute {número de vueltas : int}
         \attribute {número curvas rápidas : int}
         \attribute {número curvas lentas : int}
         \attribute {logitud : float}
-        \attribute {compuesto neumatico duro : enum \{\}}
-        \attribute {compuesto neumatico medio : enum \{\}}
-        \attribute {compuesto neumatico blando : enum \{\}}
+        \attribute {compuesto neumatico duro : enum \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico medio : enum \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico blando : enum \{C1, C2, C3, C4, C5, C6\}}
         \attribute {presion minima inicial ruedas delanteras : float}
         \attribute {presion minima inicial ruedas traseras : float}
         \attribute {límite inclinación lateral EOS ruedas delanteras : float}
         \attribute {límite inclinación lateral EOS ruedas traseras : float}
     \end {class}
-
     \begin {class} [rectangle split parts = 2, text width = 3cm] {Fix} {10,17}
     \end {class}
     \begin {class} [rectangle split parts = 2, text width = 3cm] {FixList} {10,20}
@@ -703,33 +855,36 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         rounded corners = 0.5cm,
         minimum width=2cm,
         minimum height=1cm] at (8,12.1) (critique expression) {critique expression};
-
     % knowledge links
     \draw [dashed] (calculation expression) to (10,5);
     \draw [dashed] (critique expression) to (10,12.1);
     \draw [dashed] (constraint expression) to (10,15.2);
-
     % central vertical lines bottom-up
     \draw [-{Diamond[open]}](10,4) -- (10,5.9);
     \draw (10,11) -- (10,13.15);
     \draw (10,14) -- (10,16.2);
     \draw [-{Diamond[open]}] (10,17) -- (10,19.2);
-
     % requisitos
     \draw (8.35,13.45) -- (5.9,13.45);
     \draw (11.65,13.45) -- (14.1,13.45);
     \draw (11.65,13.45) -- (14.1,11);
-
     % preferencias
-    \draw (5.15,6) -- (6.9,7)
-
+    \draw (5.15,6) -- (6.9,7);
     % piezas
     \draw [-latex] (10,3.5) -- (6.1,2.5);
     \draw [-latex] (10,3.5) -- (10,2);
     \draw [-latex] (10,3.5) -- (14,2.5);
-
-
-\end {tikzpicture}
+    % unidad potencia
+    \draw (15,0.9) -- (15,-1.5);
+    \draw (3.25,-1.5) -- (16.5,-1.5);
+    \draw [-latex] (3.25,-1.5) -> (3.25,-2);
+    \draw [-latex] (5.5,-1.5) -> (5.5,-2);
+    \draw [-latex] (7.6,-1.5) -> (7.6,-2);
+    \draw [-latex] (9.8,-1.5) -> (9.8,-2);
+    \draw [-latex] (12,-1.5) -> (12,-2);
+    \draw [-latex] (14.2,-1.5) -> (14.2,-2);
+    \draw [-latex] (16.5,-1.5) -> (16.5,-2);
+\end{tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fase De Refinamiento}
@@ -745,24 +900,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Bases de conocimientos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textbf {critique-expression}
-\begin{lstlisting}
-    EXPRESSIONS:
-    EXPRESSIONS:
-\end{lstlisting}
-
-\textbf {constraint-expression}
-\begin{lstlisting}
-    EXPRESSIONS:
-    EXPRESSIONS:
-\end{lstlisting}
-
-\textbf {calculation-expression}
-\begin{lstlisting}
-    EXPRESSIONS:
-    EXPRESSIONS:
-\end{lstlisting}
 
 \textcolor {red} {Para estas prácticas, bastará con que las bases de conocimientos contengan TRES o CUATRO instancias de cada tipo de regla encontrado.}
 
@@ -793,7 +930,89 @@ seudocódigo o de diagrama de transición
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textcolor {red} {Modelo CM-1 que incluya las transacciones identificadas.}
 
+\begin{table}[H]
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|} \hline
+\textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
 
+\textsc{Nombre de la transacción} & TR1.- Introducir requisitos del monoplaza
+
+\\ \hline
+\textsc{Objetos de información} & 
+
+    Optimizar las características técnicas y mecánicas para cada monoplaza según las preferencias de los pilotos y las condiciones de la pista.
+\\ \hline
+\textsc{Agentes involucrados} &  Emisor: XXX
+                                 Receptor: SBC\\ \hline
+\textsc{Plan de Comunicaciones} &  AAAA
+\\ \hline
+\textsc{Restricciones} &  Véase OM-4. \\ \hline
+\textsc{Especificación del intercambio de información} &  La estrategia del equipo prevalecerá sobre las opiniones del piloto.\\ \hline
+\end{tabularx}
+  \label{tab.CM1_1}
+\end{table}
+
+
+\begin{table}[H]
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|} \hline
+\textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
+
+\textsc{Nombre de la transacción} & TR2.- Verificar solución obtenida
+
+\\ \hline
+\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\\ \hline
+\textsc{Agentes involucrados} &  Emisor: SBC
+                                 Receptor: Ingenieros + director \\ \hline
+\textsc{Plan de Comunicaciones} &  AAAA
+\\ \hline
+\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución. \\ \hline
+\textsc{Especificación del intercambio de información} &  Tipo Ask/Reply\\ \hline
+\end{tabularx}
+  \label{tab.CM1_2}
+\end{table}
+
+
+\begin{table}[H]
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|} \hline
+\textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
+
+\textsc{Nombre de la transacción} & TR3.- Obtener solución
+
+\\ \hline
+\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\\ \hline
+\textsc{Agentes involucrados} &  Emisor: SBC
+                                 Receptor: Ingenieros + director \\ \hline
+\textsc{Plan de Comunicaciones} &  AAAA
+\\ \hline
+\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución correcta. \\ \hline
+\textsc{Especificación del intercambio de información} &  Tipo Report\\ \hline
+\end{tabularx}
+  \label{tab.CM1_3}
+\end{table}
+
+\begin{table}[H]
+\scriptsize
+\begin{tabularx}{\textwidth}{|l|X|} \hline
+\textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
+
+\textsc{Nombre de la transacción} & TR4.- Guardar solución
+
+\\ \hline
+\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\\ \hline
+\textsc{Agentes involucrados} &  Emisor: SBC
+                                 Receptor: BBDD \\ \hline
+\textsc{Plan de Comunicaciones} &  AAAA
+\\ \hline
+\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución correcta. \\ \hline
+\textsc{Especificación del intercambio de información} &  Tipo Report\\ \hline
+\end{tabularx}
+  \label{tab.CM1_2}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Especificación de las transacciones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -810,3 +1029,4 @@ especificadas con el modelo CM-1.
 %FINAL DEL LIBRO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
+
