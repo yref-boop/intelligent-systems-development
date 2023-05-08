@@ -224,19 +224,9 @@ Universidade da Coruña \\ Curso
 %indentaciones y espaciado entre párrafos
 \setlength{\parindent}{1,5cm} \setlength{\parskip}{0,7cm}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% BORRAR
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor {red} {Esta entrega se corresponde con los modelos de conocimiento y comunicación.  No debéis olvidar que la práctica supone el 50\% de la nota de la asignatura y que, sólo a nivel general, el material utilizado en las prácticas entrará en el examen teórico. Por esta razón esta segunda entrega supone un ``exame'' de los modelos de conocimiento y comunicación en lo que se refiere a los capítulos 5, 6, 7 y 9 del libro ``Knowledge engineering and management. The CommonKADS methodology"(Schreiber et col.)''. En las explicaciones que siguen me referiré siempre al libro de Schreiber et col. (aunque podéis encontrar el mismo material en el libro en español).}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section {Modelo de Conocimiento.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textcolor {red} {Se deberá entregar la documentación correspondiente a las tres fases de diseño del modelo (explicadas en el capítulo 7 del libro de Shreiber).}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fase de Identificación}
@@ -440,22 +430,11 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Elementos reutilizables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textcolor {red} {Elementos reutilizables que se hubiesen desarrollado con anterioridad, tales como esquemas de bases de datos ya existentes que podáis tomar como punto de partida para vuestro esquema del dominio. Probablemente no haya ninguno, pero...}
-
 La escudería para la que trabajamos ya dispone de bases de datos completas sobre los circuitos en los que se celebrarán todas las carreras de esta temporada, y tiene acceso a históricos meteorológicos de anteriores celebraciones de Grandes Premios en cada circuito.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fase de Especificación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textcolor {red} {Los apartados de esta sección  se deberán de acompañar de BREVES comentarios indicando cuestiones sobre la adaptabilidad de la plantilla al problema, explicación de cambios que se hayan realizado sobre la misma, cómo se ha aplicado la metodología de construcción del modelo de conocimiento, etc.}
-
-\textcolor {red} {EN DEFINITIVA, LOS COMENTARIOS DEBERÁN DEMOSTRAR QUE HABÉIS ENTENDIDO LOS PASOS EN LA CONSTRUCCION DEL MODELO Y, POR SUPUESTO, EL MODELO FINAL PROPUESTO.}
-
-\textcolor {red} {Excepto para la tarea y su método, para la especificación de los demás componentes del modelo de conocimiento se utilizará la notación gráfica (frente a la textual de CML) siempre que sea posible. En el caso de los mapeos de inferencias podéis encontrar un ejemplo de notación gráfica en la página 200 del libro de Alonso et col. y en la página 107 en el libro de Schreiber et col.}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Metodología empleada}
@@ -467,7 +446,6 @@ La metodología escogida para este proyecto es \textit{Middle-out} ya que la pla
 \subsubsection{Plantilla anotada}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Gráfico con la plantilla notada. Todas las modificaciones propuestas sobre la plantilla original deberán justificarse en este punto.}
 La plantilla seleccionada es la de \textit{configuration design}, modificada ligeramente para adaptarse mejor a la naturaleza de nuestro problema:
 \begin{center}
 \begin {tikzpicture}
@@ -617,41 +595,41 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 
 \textbf {Propose}
 \\[0.5cm]
-    \logicinference {skeletal design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
+\logicinference {skeletal design}{propose}{extension}{Monoplaza}{Pieza}{conocimiento de\\propuesta}{reglas de propuesta}
     \hspace {1cm}
-    \logicinference {design}{propose}{extension}{design}{design element}{conocimiento de\\propuesta}{calculation-expression}
+\logicinference {design}{propose}{extension}{Monoplaza}{Pieza}{conocimiento de\\propuesta}{reglas de propuesta}
 \\[1cm]
-\logicinference {soft requirements}{propose}{extension}{preferences}{design element}{conocimiento de\\propuesta}{calculation-expression}
+\logicinference {soft requirements}{propose}{extension}{Preferencia}{Pieza}{conocimiento de\\propuesta}{reglas de propuesta}
 \\[1cm]
 \textbf {Verify}
 \\[0.5cm]
-\logicinference {design}{verify}{truth value}{design}{boolean}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {design}{verify}{truth value}{Monoplaza}{Monoplaza.cumple}{conocimiento de\\verificación}{reglas de verificación}
 \hspace {1cm}
-\logicinference {design}{verify}{violation}{design}{constraint}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {design}{verify}{violation}{Monoplaza}{Requisito.cumple}{conocimiento de\\verificación}{reglas de verificación}
 \\[1cm]
-\logicinference {hard requirements}{verify}{truth value}{properties}{boolean}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {hard requirements}{verify}{truth value}{Requisito}{Monoplaza.cumpl}{conocimiento de\\verificación}{reglas de verificación}
 \hspace {1cm}
-\logicinference {hard requirements}{verify}{violation}{properties}{constraint}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {hard requirements}{verify}{violation}{Requisito}{Requisito.cumple}{conocimiento de\\verificación}{reglas de verificación}
 \\[1cm]
-\logicinference {extension}{verify}{truth value}{design element}{boolean}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {extension}{verify}{truth value}{Pieza}{Monoplaza.cumple}{conocimiento de\\verificación}{reglas de verificación}
 \hspace {1cm}
-\logicinference {extension}{verify}{violation}{design element}{constraint}{conocimiento de\\verificación}{constraint-expression}
+\logicinference {extension}{verify}{violation}{Pieza}{Requisito.cumple}{conocimiento de\\verificación}{reglas de verificación}
 \\[1cm]
 \textbf {Critique}
 \\[0.5cm]
-\logicinference {violation}{critique}{action list}{constraint}{fixes}{conocimiento de\\crítica}{preference-expression}
+\logicinference {violation}{critique}{action list}{Requisito.cumple}{ActionList}{conocimiento de\\crítica}{reglas de crítica}
 \hspace {1cm}
-\logicinference {design}{critique}{action list}{design}{fixes}{conocimiento de\\crítica}{preference-expression}
+\logicinference {design}{critique}{action list}{Monoplaza}{ActionList}{conocimiento de\\crítica}{reglas de crítica}
 \\[1cm]
 \textbf {Select}
 \\[0.5cm]
-\inference {action list}{select}{action}{fixes}{fixAction}
+\inference {action list}{select}{action}{ActionList}{Action}
 \\[1cm]
 \textbf {Modify}
 \\[0.5cm]
-\inference {action}{modify}{design}{fixAction}{design}
+\inference {action}{modify}{design}{Action}{Monoplaza}
 \hspace {1cm}
-\inference {design}{modify}{design}{fixAction}{design}
+\inference {design}{modify}{design}{Monoplaza}{Monoplaza}
 
 \textbf{Descripciones}
 \begin{description}
@@ -677,7 +655,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \item [Modify:] tomando el diseño como entrada, con una entrada opcional siendo la acción concreta a realizar, obtiene un nuevo y actualizado diseño.
         \begin{itemize}
             \item \textbf {Ejemplo:} modificar el diseño del coche cambiando la altura del modelo.
-            \item \textbf {Conocimiento Estático:} conocimiento sobre la acción; acción simple o repetible.
             \item \textbf {Computación:} actualización básica.
         \end{itemize}
     \item [Verify:] dado un diseño, emite un valor booleano, indicando si el diseño pasa el test, en caso contrario indica la violación.
@@ -685,7 +662,6 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
             \item \textbf {Ejemplo:} verificar un diseño de monoplaza.
             \item \textbf {Conocimiento Estático:} conocimiento del dominio.
             \item \textbf {Computación:} algoritmos de selección básicos.
-            \item \textbf {Apuntes:} es una buena candidata al uso de refinamiento gradual. Se presupone una selección aleatoria e ir añadiendo conocimiento sobre la selección más adelante, para optimizar el razonamiento.
         \end{itemize}
 \end{description}
 
@@ -741,7 +717,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Esquema del dominio final}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hspace*{-50pt}
+\hspace*{-70pt}
 \begin {tikzpicture}
     \begin{class}[rectangle split parts=1, xshift=+32mm, text width = 0.75cm]{ICE}{0,-2}
     \end{class}
@@ -769,8 +745,8 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {antigüedad : int}
         \attribute {vecesCambiado : int}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 6cm] {Ruedas} {10,2}
-        \attribute {compuesto : enum \{C1, C2, C3, C4, C5, C6\}}
+    \begin {class} [rectangle split parts = 2, text width = 6cm] {Rueda} {10,2.25}
+        \attribute {compuesto : \{C1, C2, C3, C4, C5, C6\}}
         \attribute {inclinación vertical EOS delantera : float}
         \attribute {inclinación vertical EOS trasera : float}
         \attribute {inclinación horizontal EOS delantera : float}
@@ -778,29 +754,30 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {presión delantera : float}
         \attribute {presión trasera : float}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 6cm] {Monoplaza} {10,11}
+    \begin {class} [rectangle split parts = 2, text width = 5cm] {Monoplaza} {10,12}
+        \attribute {cumple : bool}
         \attribute {alerón delantero :\{\}}
         \attribute {alerón trasero : \{\}}
         \attribute {carga de combustible : float}
-        \attribute {carga aerodinámica alerón delantero : enum \{\}}
-        \attribute {carga aerodinámica alerón trasero : enum \{\}}
+        \attribute {carga aerodinámica alerón delantero : \{\}}
+        \attribute {carga aerodinámica alerón trasero : \{\}}
         \attribute {ajuste del diferencial : int}
-        \attribute {suspensión delantera : enum \{\}}
-        \attribute {suspensión trasera : enum \{\}}
+        \attribute {suspensión delantera : \{\}}
+        \attribute {suspensión trasera : \{\}}
         \attribute {altura delantera : int}
         \attribute {altura trasera : int}
         \attribute {presión de frenos : int}
         \attribute {sesgo de frenos delanteros : int}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 4cm] {Preferencias} {3,6}
-        \attribute {actitud piloto : enum \{agresiva, segura\}}
-        \attribute {comportamiento coche : enum \{sobrevirador, subvirador\}}
+    \begin {class} [rectangle split parts = 2, text width = 4cm] {Preferencias} {3,5.75}
+        \attribute {actitud piloto : \{agresiva, segura\}}
+        \attribute {comportamiento coche : \{sobrevirador, subvirador\}}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Meteorologia} {16,15}
+    \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Meteorologia} {16,15.25}
         \attribute {temperatura ambiental : float}
         \attribute {temperatura asfalto : float}
         \attribute {velocidad viento : int}
-        \attribute {dirección viento : enum \{N, NE, E, SE, S, SO, O, NO\}}
+        \attribute {dirección viento : \{N, NE, E, SE, S, SO, O, NO\}}
         \attribute {humedad : int}
         \attribute {presion atmosférica : int}
     \end {class}
@@ -815,75 +792,138 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {desgaste CE : int}
         \attribute {desgaste Exhaust : int}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 3cm] {Requisitos} {10,14}
+    \begin {class} [rectangle split parts = 2, text width = 3cm] {Requisito} {10,15.25}
+        \attribute {cumple : bool}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 5.5cm] {Propiedades Circuito} {3,16} 
-        \attribute {tracción : enum \{1,2,3,4,5\}}
-        \attribute {frenada : enum \{1,2,3,4,5\}}
-        \attribute {fuerza lateral : enum \{1,2,3,4,5\}}
+    \begin {class} [rectangle split parts = 2, text width = 5.5cm] {Circuito} {3,16}
+        \attribute {tracción : \{1,2,3,4,5\}}
+        \attribute {frenada : \{1,2,3,4,5\}}
+        \attribute {fuerza lateral : \{1,2,3,4,5\}}
         \attribute {estrés ruedas : \{1,2,3,4,5\}}
-        \attribute {evolución de la pista : enum\{1,2,3,4,5\}}
-        \attribute {agarre del asfalto : enum\{1,2,3,4,5\}}
-        \attribute {carga aerodinámica : enum \{1,2,3,4,5\}}
+        \attribute {evolución de la pista : \{1,2,3,4,5\}}
+        \attribute {agarre del asfalto : \{1,2,3,4,5\}}
+        \attribute {carga aerodinámica : \{1,2,3,4,5\}}
         \attribute {número de vueltas : int}
         \attribute {número curvas rápidas : int}
         \attribute {número curvas lentas : int}
         \attribute {logitud : float}
-        \attribute {compuesto neumatico duro : enum \{C1, C2, C3, C4, C5, C6\}}
-        \attribute {compuesto neumatico medio : enum \{C1, C2, C3, C4, C5, C6\}}
-        \attribute {compuesto neumatico blando : enum \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico duro : \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico medio : \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico blando : \{C1, C2, C3, C4, C5, C6\}}
         \attribute {presion minima inicial ruedas delanteras : float}
         \attribute {presion minima inicial ruedas traseras : float}
         \attribute {límite inclinación lateral EOS ruedas delanteras : float}
         \attribute {límite inclinación lateral EOS ruedas traseras : float}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 3cm] {Fix} {10,17}
+    \begin {class} [rectangle split parts = 2, text width = 5cm] {Action} {10,18.75}
+        \attribute {acción: \{Aumento, Disminución\}}
     \end {class}
-    \begin {class} [rectangle split parts = 2, text width = 3cm] {FixList} {10,20}
+    \begin {class} [rectangle split parts = 1, text width = 2cm] {ActionList} {10,20}
     \end {class}
- 
+
+    % relations
+    \node[text width=3cm] at (13,4.1)
+        {propose};
+     \node[text width=3cm] at (11,15.8)
+        {critique};
+    \node[text width=3cm] at (11,12.5)
+        {verify};
+    \node[text width=3cm] at (15,18.75)
+        {fix};
+
     % rules
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (8,5) (calculation expression) {calculation expression};
+        minimum height=1cm] at (15,5) (propuesta) {reglas propuesta};
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (8,15.2) (constraint expression) {constraint expression};
+        minimum height=1cm] at (8,16.7) (critica) {reglas crítica};
     \node [draw,
         rounded corners = 0.5cm,
         minimum width=2cm,
-        minimum height=1cm] at (8,12.1) (critique expression) {critique expression};
+        minimum height=1cm] at (8,13.1) (verificacion) {reglas verificación};
+
     % knowledge links
-    \draw [dashed] (calculation expression) to (10,5);
-    \draw [dashed] (critique expression) to (10,12.1);
-    \draw [dashed] (constraint expression) to (10,15.2);
+    \draw [dashed] (propuesta) to (13.25,5);
+    \draw [dashed] (verificacion) to (10,13.1);
+    \draw [dashed] (critica) to (10,16.7);
+
     % central vertical lines bottom-up
     \draw [-{Diamond[open]}](10,4) -- (10,5.9);
-    \draw (10,11) -- (10,13.15);
-    \draw (10,14) -- (10,16.2);
-    \draw [-{Diamond[open]}] (10,17) -- (10,19.2);
+    \draw (10,12) -- (10,12.3);
+    \draw (10,12.7) -- (10,14.15);
+    \draw (10,15.25) -- (10,15.6);
+    \draw (10,16) -- (10,17.7);
+    \draw [-{Diamond[open]}] (10,18.75) -- (10,19.5);
+
     % requisitos
-    \draw (8.35,13.45) -- (5.9,13.45);
-    \draw (11.65,13.45) -- (14.1,13.45);
-    \draw (11.65,13.45) -- (14.1,11);
+    \draw [-latex] (8.35,15) -> (5.9,15);
+    \draw [-latex] (11.65,15) -> (14.1,15);
+    \draw (13.7,15) -- (13.7,11);
+    \draw [rounded corners = 5pt] (13.95,10.75) -| (13.7,11);
+    \draw [-latex] (13.95,10.75) -> (14.1,10.75);
+
     % preferencias
-    \draw (5.15,6) -- (6.9,7);
+    \draw (3.25,6.25) -- (7.3,6.25);
+    \draw [rounded corners = 5pt] (3.25,6.25) -| (3,6);
+    \draw [-latex] (3,6) -- (3,5.75);
+
     % piezas
-    \draw [-latex] (10,3.5) -- (6.1,2.5);
-    \draw [-latex] (10,3.5) -- (10,2);
-    \draw [-latex] (10,3.5) -- (14,2.5);
+    \draw [-latex] (10,3.5) -- (10,2.25);
+    \draw [rounded corners = 5pt] (9.75,3) -| (10,3.25);
+    \draw [rounded corners = 5pt] (10.25,3) -| (10,3.25);
+
+    \draw (4.75,3) -- (9.75,3);
+    \draw [rounded corners = 5pt] (4.75,3) -| (4.5,2.7);
+    \draw [-latex] (4.5,2.7) -> (4.5,2.5);
+
+    \draw (10.25,3) -- (15.25,3);
+    \draw [rounded corners = 5pt] (15.25,3) -| (15.5,2.7);
+    \draw [-latex] (15.5,2.7) -> (15.5,2.5);
+
     % unidad potencia
-    \draw (15,0.9) -- (15,-1.5);
-    \draw (3.25,-1.5) -- (16.5,-1.5);
-    \draw [-latex] (3.25,-1.5) -> (3.25,-2);
-    \draw [-latex] (5.5,-1.5) -> (5.5,-2);
-    \draw [-latex] (7.6,-1.5) -> (7.6,-2);
-    \draw [-latex] (9.8,-1.5) -> (9.8,-2);
-    \draw [-latex] (12,-1.5) -> (12,-2);
-    \draw [-latex] (14.2,-1.5) -> (14.2,-2);
-    \draw [-latex] (16.5,-1.5) -> (16.5,-2);
+    \draw (15.5,0.9) -- (15.5,-1.25);
+    \draw [rounded corners = 5pt] (15,-1.5) -| (15.5,-1.25);
+    \draw [rounded corners = 5pt] (15.75,-1.5) -| (15.5,-1.25);
+
+    \draw (3.5,-1.5) -- (15,-1.5);
+    \draw [rounded corners = 5pt] (3.5,-1.5) -| (3.25,-1.9);
+    \draw [-latex] (3.25,-1.8) -> (3.25,-2);
+    \draw [rounded corners = 5pt] (5.75,-1.5) -| (5.5,-1.9);
+    \draw [-latex] (5.5,-1.8) -> (5.5,-2);
+    \draw [rounded corners = 5pt] (7.85,-1.5) -| (7.6,-1.9);
+    \draw [-latex] (7.6,-1.8) -> (7.6,-2);
+    \draw [rounded corners = 5pt] (10.5,-1.5) -| (9.8,-1.9);
+    \draw [-latex] (9.8,-1.8) -> (9.8,-2);
+    \draw [rounded corners = 5pt] (12.25,-1.5) -| (12,-1.9);
+    \draw [-latex] (12,-1.8) -> (12,-2);
+    \draw [rounded corners = 5pt] (14.45,-1.5) -| (14.2,-1.9);
+    \draw [-latex] (14.2,-1.8) -> (14.2,-2);
+
+    \draw (15.75,-1.5) -- (16.25,-1.5);
+    \draw [rounded corners = 5pt] (16.25,-1.5) -| (16.5,-1.9);
+    \draw [-latex] (16.5,-1.8) -> (16.5,-2);
+
+    % fix -> pieza
+    \draw (12.65,18.5) -- (18.25,18.5);
+    \draw [rounded corners = 5pt] (18.25,18.5) -| (18.5,18.25);
+    \draw (18.5,18.25) -- (18.5,4);
+    \draw [rounded corners = 5pt] (18.25,3.6) -| (18.5,4);
+    \draw (11.15,3.6) -- (18.25,3.6);
+
+    % propuesta
+    \draw (11.65,14.75) -- (13,14.75);
+    \draw [rounded corners = 5pt] (13,14.75) -| (13.25,14.5);
+    \draw (12.65,11.75) -- (13,11.75);
+    \draw [rounded corners = 5pt] (13,11.75) -| (13.25,11.5);
+    \draw [rounded corners = 5pt] (13,14.75) -| (13.25,14.5);
+    \draw (13.25,14.5) -- (13.25,4.15);
+    \draw [rounded corners = 5pt] (13,3.9) -| (13.25,4.15);
+    \draw (11.15,3.9) -- (13,3.9);
+
+
 \end{tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -895,13 +935,40 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 \subsubsection{Validación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Validación del modelo sobre los escenarios propuestos en la fase de identificación.}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Bases de conocimientos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textcolor {red} {Para estas prácticas, bastará con que las bases de conocimientos contengan TRES o CUATRO instancias de cada tipo de regla encontrado.}
+\textbf{reglas de verificación}
+\begin{lstlisting}
+    EXPRESSIONS:
+        Monoplaza.Ruedas.presi|ó|n_delantera <
+        Requisito.Circuito.presi|ó|n_m|í|nima_inicial_trasera
+      VERIFICA
+        Monoplaza.cumple = false
+        Requisito.Circuito.presi|ó|n_m|í|nima_inicial_trasera = false
+    END KNOWLEDGE-BASE regla-verificaci|ó|n;
+\end{lstlisting}
+
+\textbf{reglas de crítica}
+\begin{lstlisting}
+    EXPRESSIONS:
+        Requisito.Desgaste.ICE.cumple = false
+      CRITICA
+        Action = ICE, Action.acci|ó|n = Aumento
+    END KNOWLEDGE-BASE regla-cr|í|tica;
+\end{lstlisting}
+
+\textbf{reglas de propuesta}
+\begin{lstlisting}
+    EXPRESSIONS:
+        Requisito.<valor>
+        Monoplaza
+      PROPONE
+        Pieza<valor>
+    END KNOWLEDGE-BASE regla-propuesta;
+\end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -938,7 +1005,7 @@ seudocódigo o de diagrama de transición
 \textsc{Nombre de la transacción} & TR1.- Introducir requisitos del monoplaza
 
 \\ \hline
-\textsc{Objetos de información} & 
+\textsc{Objetos de información} &
 
     Optimizar las características técnicas y mecánicas para cada monoplaza según las preferencias de los pilotos y las condiciones de la pista.
 \\ \hline
