@@ -8,6 +8,7 @@
 \usepackage{float}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{pdfpages}
 
 % color del texto
 \usepackage {xcolor}
@@ -267,7 +268,6 @@ La tarea de la cual se refiere este modelo conceptual es la tarea 4 del OM-3, co
     \item \textbf{MGU-K}: de sus siglas en inglés, Motor-Generador de Cinética, recupera la energía generada por las cargas cinéticas como, por ejemplo, las frenadas.
     \item \textbf{ES}: de sus siglas en inglés, Almacenador de Energía. Almacena la energía eléctrica generada por las unidades de recuperación de energía (MGU-H y MGU-K). 
     \item \textbf{CE}: de sus siglas en inglés, Control Electrónico. Controla y monitorea el funcionamiento de la unidad de potencia híbrida del coche.
-    \item \textbf{Exhaust}: del nombre en inglés, sistema de escape de la Unidad de Potencia. Permite que los gases de escape generados por la combustión del combustible dentro del motor salgan del motor de manera segura y eficiente.
     \item \textbf{EOS}: de sus siglas en inglés, Fin de Recta, indica que la forma que se debe medir, en este caso, la inclinación vertical de las ruedas, es al final de una recta donde el monoplaza tiene su mayor carga aerodinámica.
     \item \textbf{Diferencial}: componente que se utiliza para permitir que las ruedas de la parte trasera del coche giren a diferentes velocidades mientras el coche está girando o acelerando en línea recta. En los coches de Fórmula 1, el diferencial está diseñado para ser altamente ajustable y se puede adaptar a las condiciones específicas de la pista y del coche. Desde dentro del coche, los pilotos también pueden ajustar la configuración del diferencial utilizando los controles en el volante.
     \item \textbf{Sesgo de freno}: configuración que se refiere a la proporción de frenado entre las ruedas delanteras y traseras del coche. Se puede ajustar para lograr un equilibrio óptimo entre la frenada y el rendimiento de la dirección en diferentes situaciones.
@@ -440,7 +440,7 @@ La escudería para la que trabajamos ya dispone de bases de datos completas sobr
 \subsubsection{Metodología empleada}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 La metodología escogida para este proyecto es \textit{Middle-out} ya que la plantilla escogida funciona como aproximación correcta de la estructura de inferencias de manera bastante directa.
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Plantilla anotada}
@@ -637,31 +637,26 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \hspace*{2cm}
         \begin{itemize}
             \item \textbf {Ejemplo:} escoger la altura que va a tener el monoplaza.
-            \item \textbf {Conocimiento Estático:} dependencias entre elecciones de componentes; preferencias de componentes.
-            \item \textbf {Apuntes:} solo se genera parte de la solución.
+            \item \textbf {Conocimiento:} reglamento; preferencias de componentes.
         \end{itemize}
     \item [Critique:] dada una propuesta de solución, genera uno o varios problemas relacionados.
        \begin{itemize}
             \item \textbf {Ejemplo:} criticar un posible diseño del coche.
-            \item \textbf {Conocimiento Estático:} tendencia a ser heurísitca y dependiente del contexto.
-            \item \textbf {Computación:} actualización básica.
+            \item \textbf {Conocimiento:} heurísticas relacionadas con cálculos del monoplaza.
         \end{itemize}
     \item [Select:] escoge un elemento de la lista o conjunto dado.
         \begin{itemize}
             \item \textbf {Ejemplo:} específicamente escoge una acción a tomar, por ejemplo, reducir la altura del monoplaza.
-            \item \textbf {Conocimiento Estático:} conocimiento del dominio.
-            \item \textbf {Computación:} \emph{forward reasoning}.
+            \item \textbf {Conocimiento:} se escoge la acción de manera aleatoria.
         \end{itemize}
     \item [Modify:] tomando el diseño como entrada, con una entrada opcional siendo la acción concreta a realizar, obtiene un nuevo y actualizado diseño.
         \begin{itemize}
             \item \textbf {Ejemplo:} modificar el diseño del coche cambiando la altura del modelo.
-            \item \textbf {Computación:} actualización básica.
         \end{itemize}
     \item [Verify:] dado un diseño, emite un valor booleano, indicando si el diseño pasa el test, en caso contrario indica la violación.
         \begin{itemize}
             \item \textbf {Ejemplo:} verificar un diseño de monoplaza.
-            \item \textbf {Conocimiento Estático:} conocimiento del dominio.
-            \item \textbf {Computación:} algoritmos de selección básicos.
+            \item \textbf {Conocimiento:} conocimento sobre las propiedades de monoplazas.
         \end{itemize}
 \end{description}
 
@@ -746,7 +741,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {vecesCambiado : int}
     \end {class}
     \begin {class} [rectangle split parts = 2, text width = 6cm] {Rueda} {10,2.25}
-        \attribute {compuesto : \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto : \{C1, C2, C3, C4, C5, inter, lluvia extrema\}}
         \attribute {inclinación vertical EOS delantera : float}
         \attribute {inclinación vertical EOS trasera : float}
         \attribute {inclinación horizontal EOS delantera : float}
@@ -756,18 +751,18 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \end {class}
     \begin {class} [rectangle split parts = 2, text width = 5cm] {Monoplaza} {10,12}
         \attribute {cumple : bool}
-        \attribute {alerón delantero :\{\}}
-        \attribute {alerón trasero : \{\}}
-        \attribute {carga de combustible : float}
-        \attribute {carga aerodinámica alerón delantero : \{\}}
-        \attribute {carga aerodinámica alerón trasero : \{\}}
+        \attribute {alerón delantero : \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ,11\}}
+        \attribute {alerón trasero : \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\}}
+        \attribute {carga de combustible : int}
+        \attribute {carga aerodinámica alerón delantero : \{alta, baja\}}
+        \attribute {carga aerodinámica alerón trasero : \{alta, baja\}}
         \attribute {ajuste del diferencial : int}
-        \attribute {suspensión delantera : \{\}}
-        \attribute {suspensión trasera : \{\}}
+        \attribute {suspensión delantera : \{suave, media, firme\}}
+        \attribute {suspensión trasera : \{suave, media, firme\}}
         \attribute {altura delantera : int}
         \attribute {altura trasera : int}
-        \attribute {presión de frenos : int}
-        \attribute {sesgo de frenos delanteros : int}
+        \attribute {presión de frenos : int[50-100]}
+        \attribute {sesgo de frenos delanteros : int[70-50]}
     \end {class}
     \begin {class} [rectangle split parts = 2, text width = 4cm] {Preferencias} {3,5.75}
         \attribute {actitud piloto : \{agresiva, segura\}}
@@ -775,6 +770,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \end {class}
     \begin {class} [rectangle split parts = 2, text width = 3.5cm] {Meteorologia} {16,15.25}
         \attribute {temperatura ambiental : float}
+        \attribute {precipitación \{int\}}
         \attribute {temperatura asfalto : float}
         \attribute {velocidad viento : int}
         \attribute {dirección viento : \{N, NE, E, SE, S, SO, O, NO\}}
@@ -807,9 +803,9 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
         \attribute {número curvas rápidas : int}
         \attribute {número curvas lentas : int}
         \attribute {logitud : float}
-        \attribute {compuesto neumatico duro : \{C1, C2, C3, C4, C5, C6\}}
-        \attribute {compuesto neumatico medio : \{C1, C2, C3, C4, C5, C6\}}
-        \attribute {compuesto neumatico blando : \{C1, C2, C3, C4, C5, C6\}}
+        \attribute {compuesto neumatico duro : \{C1, C2, C3, C4, C5, inter, lluvia extrema\}}
+        \attribute {compuesto neumatico medio : \{C1, C2, C3, C4, C5, inter, lluvia extrema\}}
+        \attribute {compuesto neumatico blando : \{C1, C2, C3, C4, C5, inter, lluvia extrema\}}
         \attribute {presion minima inicial ruedas delanteras : float}
         \attribute {presion minima inicial ruedas traseras : float}
         \attribute {límite inclinación lateral EOS ruedas delanteras : float}
@@ -829,7 +825,11 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \node[text width=3cm] at (11,12.5)
         {verify};
     \node[text width=3cm] at (15,18.75)
-        {fix};
+        {modify};
+    \node [text width=3cm] at (13.25,20)
+        {select (se realiza de forma aleatoria)};
+    \node [text width=3cm] at (15.5,6)
+        {(Reglamento)};
 
     % rules
     \node [draw,
@@ -851,7 +851,7 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \draw [dashed] (critica) to (10,16.7);
 
     % central vertical lines bottom-up
-    \draw [-{Diamond[open]}](10,4) -- (10,5.9);
+    \draw [-{Diamond[open]}](10,4) -- (10,4.9);
     \draw (10,12) -- (10,12.3);
     \draw (10,12.7) -- (10,14.15);
     \draw (10,15.25) -- (10,15.6);
@@ -923,6 +923,10 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
     \draw [rounded corners = 5pt] (13,3.9) -| (13.25,4.15);
     \draw (11.15,3.9) -- (13,3.9);
 
+    % action list
+    \draw [rounded corners = 5pt] (11.25,20.25) -| (11,20);
+    \draw [rounded corners = 5pt] (11.25,20.25) -| (11.5,20);
+    \draw [rounded corners = 5pt] (11.25,19.75) -| (11.5,20);
 
 \end{tikzpicture}
 
@@ -933,21 +937,33 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Validación}
+\vspace*{-1cm}
+\begin{center}
+\includegraphics[scale=0.8]{validacion.pdf}
+\end{center}
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Bases de conocimientos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {Para estas prácticas, bastará con que las bases de conocimientos contengan TRES o CUATRO instancias de cada tipo de regla encontrado.}
 \textbf{reglas de verificación}
 \begin{lstlisting}
     EXPRESSIONS:
-        Monoplaza.Ruedas.presi|ó|n_delantera <
+        Monoplaza.Ruedas.presi|ó|n_trasera <
         Requisito.Circuito.presi|ó|n_m|í|nima_inicial_trasera
-      VERIFICA
+      VERIFICA:
         Monoplaza.cumple = false
         Requisito.Circuito.presi|ó|n_m|í|nima_inicial_trasera = false
+    END KNOWLEDGE-BASE regla-verificaci|ó|n;
+
+    EXPRESSIONS:
+        Monoplaza.Ruedas.compuesto != lluvia_extrema
+        Requisito.Meteorolog|í|a.precipitaci|ó|n > 150
+      VERIFICA:
+        Monoplaza.cumple = false
+        Requisito.Meteorolog|í|a.precipitaci|ó|n.cumple = false
     END KNOWLEDGE-BASE regla-verificaci|ó|n;
 \end{lstlisting}
 
@@ -958,15 +974,37 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
       CRITICA
         Action = ICE, Action.acci|ó|n = Aumento
     END KNOWLEDGE-BASE regla-cr|í|tica;
+
+    EXPRESSIONS:
+        Requisito.Circuito.l|í|mite_inclinaci|ó|n_lateral
+            _EOS_ruedas_delanteras = false
+      CRITICA
+        Action = Monoplaza.Rueda.|í|mite_inclinaci|ó|n_lateral
+            _EOS_ruedas_delante, Action.Acci|ó|n = Disminuci|ó|n;
+    END KNOWLEDGE-BASE regla-cr|í|tica;
 \end{lstlisting}
 
+\newpage
 \textbf{reglas de propuesta}
 \begin{lstlisting}
     EXPRESSIONS:
-        Requisito.<valor>
-        Monoplaza
+        (Requisito.Circuito.fuerza_lateral{4} OR
+        Requisito.Circuito.fuerza_lateral{5}) AND
+        (Requisito.Circuito.carga_aerodin|á|mica{4} OR
+        Requisito.Circuito.carga_aerodin|á|mica{5})
       PROPONE
-        Pieza<valor>
+        Monoplaza.carga_aerodin|á|mica_aler|ó|n delantero = alta
+        Monoplaza.carga_aerodin|á|mica_aler|ó|n trasero = alta 
+        Monoplaza.suspensi|ó|n_delantera = firme
+        Monoplaza.suspensi|ó|n_trasera = firme
+    END KNOWLEDGE-BASE regla-propuesta;
+
+    EXPRESSIONS:
+        Requisito.Circuito.n|ú|mero_curvas_r|á|pidas > 15 AND
+        Requisito.Circuito.n|ú|mero_curvas_lentas > 15
+      PROPONE
+        Monoplaza.suspensi|ó|n.delantera = suave
+        Monoplaza.suspensi|ó|n.trasera = suave
     END KNOWLEDGE-BASE regla-propuesta;
 \end{lstlisting}
 
@@ -976,45 +1014,38 @@ La plantilla seleccionada es la de \textit{configuration design}, modificada lig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red} {El modelado conceptual no está completo sin el modelo de comunicación, que es necesario realizar antes de la implementación. El modelo se realizará siguiendo las pautas de la metodología CommonKADS resumidas en la tabla 9.8 y se comprobará su corrección con respecto a los otros modelos ya construidos siguiendo las guías que se proporcionan en el apartado 9.7.4 del libro. En el documento a entregar se incluirán comentarios BREVES que demuestren que se han tenido en cuenta estos aspectos.}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Plan de comunicación general}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor {red}
-{
-Brevemente COMENTADO y que incluya:
-\begin{itemize}
- \item Diagrama de diálogo
- \item Información de control de las transacciones en forma de
-seudocódigo o de diagrama de transición
-\end{itemize}
-}
+\vspace*{-1cm}
+\begin{center}
+    \includegraphics[scale=0.8]{modelo_conoc.png}
+\end{center}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Descripción de las Transacciones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor {red} {Modelo CM-1 que incluya las transacciones identificadas.}
+
 
 \begin{table}[H]
 \scriptsize
 \begin{tabularx}{\textwidth}{|l|X|} \hline
 \textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
 
-\textsc{Nombre de la transacción} & TR1.- Introducir requisitos del monoplaza
+\textsc{Nombre de la transacción} & TR1.- Introducir datos + preferencias del monoplaza
 
 \\ \hline
 \textsc{Objetos de información} &
-
-    Optimizar las características técnicas y mecánicas para cada monoplaza según las preferencias de los pilotos y las condiciones de la pista.
+    Preferencias de los pilotos, condiciones de la pista, meteorología y estado del coche.
 \\ \hline
-\textsc{Agentes involucrados} &  Emisor: XXX
+\textsc{Agentes involucrados} &  Emisor: Ingenieros + Director
                                  Receptor: SBC\\ \hline
-\textsc{Plan de Comunicaciones} &  AAAA
+\textsc{Plan de Comunicaciones} &  Configuración F1
 \\ \hline
-\textsc{Restricciones} &  Véase OM-4. \\ \hline
-\textsc{Especificación del intercambio de información} &  La estrategia del equipo prevalecerá sobre las opiniones del piloto.\\ \hline
+\textsc{Restricciones} &  Para iniciar la transacción, el SBC debe de estar listo para ser usado.. \\ \hline
+\textsc{Especificación del intercambio de información} &  Tipo Order.\\ \hline
 \end{tabularx}
   \label{tab.CM1_1}
 \end{table}
@@ -1025,40 +1056,39 @@ seudocódigo o de diagrama de transición
 \begin{tabularx}{\textwidth}{|l|X|} \hline
 \textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
 
-\textsc{Nombre de la transacción} & TR2.- Verificar solución obtenida
+\textsc{Nombre de la transacción} & TR2.- Recopilar datos
 
 \\ \hline
-\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\textsc{Objetos de información} & Datos almacenados previamente en la BBDD introducidos en configuraciones anteriores. 
 \\ \hline
-\textsc{Agentes involucrados} &  Emisor: SBC
-                                 Receptor: Ingenieros + director \\ \hline
-\textsc{Plan de Comunicaciones} &  AAAA
+\textsc{Agentes involucrados} &  Emisor: BBDD
+                                 Receptor: SBC \\ \hline
+\textsc{Plan de Comunicaciones} &  Configuración F1
 \\ \hline
-\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución. \\ \hline
+\textsc{Restricciones} &  El SBC debe de estar listo para ser usado, y debe haberse iniciado la TR1. \\ \hline
 \textsc{Especificación del intercambio de información} &  Tipo Ask/Reply\\ \hline
 \end{tabularx}
   \label{tab.CM1_2}
 \end{table}
 
-
 \begin{table}[H]
 \scriptsize
 \begin{tabularx}{\textwidth}{|l|X|} \hline
 \textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
 
-\textsc{Nombre de la transacción} & TR3.- Obtener solución
+\textsc{Nombre de la transacción} & TR3.- Proporcionar reglamento
 
 \\ \hline
-\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\textsc{Objetos de información} & Reglamento.
 \\ \hline
-\textsc{Agentes involucrados} &  Emisor: SBC
-                                 Receptor: Ingenieros + director \\ \hline
-\textsc{Plan de Comunicaciones} &  AAAA
+\textsc{Agentes involucrados} &  Emisor: BBDD
+                                 Receptor: SBC \\ \hline
+\textsc{Plan de Comunicaciones} &  Configuración F1.
 \\ \hline
-\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución correcta. \\ \hline
-\textsc{Especificación del intercambio de información} &  Tipo Report\\ \hline
+\textsc{Restricciones} &  Se inicia la transacción cada vez que ocurre una nueva extensión del diseño. \\ \hline
+\textsc{Especificación del intercambio de información} &  Tipo Ask/Reply\\ \hline
 \end{tabularx}
-  \label{tab.CM1_3}
+  \label{tab.CM1_2}
 \end{table}
 
 \begin{table}[H]
@@ -1066,34 +1096,22 @@ seudocódigo o de diagrama de transición
 \begin{tabularx}{\textwidth}{|l|X|} \hline
 \textbf{Modelo de Comunicación} & \textbf{Formulario CM-1} \\ \hline\hline
 
-\textsc{Nombre de la transacción} & TR4.- Guardar solución
+\textsc{Nombre de la transacción} & TR4.- Devolver configuración final obtenida
 
 \\ \hline
-\textsc{Objetos de información} & Configuración del monoplaza obtenida
+\textsc{Objetos de información} & Configuración final del monoplaza 
 \\ \hline
 \textsc{Agentes involucrados} &  Emisor: SBC
-                                 Receptor: BBDD \\ \hline
-\textsc{Plan de Comunicaciones} &  AAAA
+                                 Receptor: Ingenieros + director \\ \hline
+\textsc{Plan de Comunicaciones} &  Configuración F1.
 \\ \hline
-\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución correcta. \\ \hline
+\textsc{Restricciones} &  Se inicia la transacción cuando el SBC obtiene una solución correcta, es decir, cuando el truth value es true. \\ \hline
 \textsc{Especificación del intercambio de información} &  Tipo Report\\ \hline
 \end{tabularx}
   \label{tab.CM1_2}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Especificación de las transacciones}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\textcolor {red} {
-Modelo CM-2 para las transacciones identificadas.
-\\
-\textbf{NOTA IMPORTANTE:} Normalmente los modelos de comunicación de las prácticas son sencillos, por lo que este formulario puede no ser necesario. Se realizará sólo
-para las transacciones complejas que no queden completamente
-especificadas con el modelo CM-1.
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %FINAL DEL LIBRO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
-
